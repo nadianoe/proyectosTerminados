@@ -1,0 +1,134 @@
+body {
+    background-color: midnightblue;
+}
+
+#logo {
+
+    position: absolute;
+    top: 13.5cm;
+    left: 10cm;
+    width: 250px;
+    height: 250px;
+}
+
+
+nav {
+
+    text-align: right;
+    line-height: 50px;
+    position: relative;
+    background-color: #99F52E;
+    width: 26cm;
+    height: 5.5cm;
+
+}
+
+
+.icono{
+    padding-left: 1.3cm;
+    padding-right: 1.5cm;
+}
+
+#hr1 {
+    position: absolute;
+    top: 0.5cm;
+    left: 8.3cm;
+    background-color: black;
+    height: 25vh;
+    width: 0.08cm;
+}
+
+#hr2 {
+
+    position: absolute;
+    top: 0.5cm;
+    left: 18cm;
+    background-color: black;
+    height: 25vh;
+    width: 0.08cm;
+
+}
+
+#hr3 {
+    position: absolute;
+    top: 1cm;
+    left: 8.3cm;
+    background-color: black;
+    height: 25vh;
+    width: 0.08cm;
+}
+
+#hr4 {
+    position: absolute;
+    top: 1cm;
+    left: 18cm;
+    background-color: black;
+    height: 25vh;
+    width: 0.08cm;
+}
+
+
+footer {
+    position: absolute;
+    top: 49cm;
+    width: 26cm;
+    background-color: #99F52E;
+}
+
+
+#subtittle {
+    position: relative;
+    top: 2cm;
+    font-size: 34px;
+    text-align: center;
+    padding: 1cm;
+    background-color: #99F52E;
+    border-radius: 25px;
+}
+
+.fondoContenido {
+    position: relative;
+    top: 6cm;
+    background-color: #99F52E;
+    border-radius: 25px;
+    text-align: center;
+    padding: 1cm;
+}
+
+table,
+th,
+td {
+    border: 3px solid black;
+}
+
+.navbar {
+    position: relative;
+    top: 4cm;
+    background-color: midnightblue;
+
+}
+
+.options {
+    border-radius: 25px;
+    background-color: #99F52E;
+    padding: 1cm;
+    font-size: 25px;
+    height: 3cm;
+    text-align: center;
+}
+
+select {
+    border: none;
+    background-color: #99F52E;
+    width: 4cm;
+    border-radius: 25px;
+
+}
+
+.redirection {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+
+
