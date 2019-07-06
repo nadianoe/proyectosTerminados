@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping
+@RequestMapping("/htmls/*")
 public class HomeController {
 
-   @GetMapping("/htmls/scheduledule.html")
+   @GetMapping("/htmls/scheduledule")
     public String home(){
        return "scheduleGames.html";
    }
