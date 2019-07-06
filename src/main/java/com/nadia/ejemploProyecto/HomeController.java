@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class HomeController {
 
-   @GetMapping("../htmls/scheduleGames")
+   @GetMapping("/htmls/scheduledule.html")
     public String home(){
        return "scheduleGames.html";
    }
