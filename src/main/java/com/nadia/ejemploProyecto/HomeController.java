@@ -4,11 +4,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/htmls/*")
 public class HomeController {
 
-   @GetMapping("/htmls/scheduledule")
+   @GetMapping("/")
     public String home(){
        return "scheduleGames.html";
    }
+
+   
 }
