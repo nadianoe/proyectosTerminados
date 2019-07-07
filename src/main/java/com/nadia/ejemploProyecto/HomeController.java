@@ -12,4 +12,9 @@ public class HomeController {
        return "../htmls/scheduleGames.html";
    }
 
+   @GetMapping("/nextGame")
+   public String nextGame(){
+   		return "../htmls/nextGame.html";
+   }
+
 }
