@@ -9,12 +9,12 @@ public class HomeController {
 
    @GetMapping
     public String home(){
-       return "../htmls/scheduleGames.html";
+       return "scheduleGames.html";
    }
 
    @GetMapping("/nextGame")
    public String nextGame(){
-   		return "../htmls/nextGame.html";
+   		return "/htmls/nextGame.html";
    }
 
 }
