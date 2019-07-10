@@ -14,7 +14,7 @@ public class HomeController {
 
    @GetMapping("/nextGame")
    public String nextGame(){
-   		return "/htmls/nextGame.html";
+   		return "htmls/nextGame.html";
    }
 
 }
