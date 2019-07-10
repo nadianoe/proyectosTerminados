@@ -18,7 +18,7 @@ public class HomeController {
    }
     
    @GetMapping("/actualGame")
-   public String nextGame(){
+   public String actualGame(){
    		return "actualGame.html";
    }
 
