@@ -2,6 +2,7 @@ body {
     background-color: midnightblue;
 }
 
+
 #logo {
 
     position: absolute;
@@ -14,74 +15,43 @@ body {
 
 nav {
 
-    text-align: right;
+    text-align: center;
     line-height: 50px;
     position: relative;
     background-color: #99F52E;
-    width: 26cm;
-    height: 5.5cm;
+    width: 100%;
+    
 
 }
 
-
-.icono{
-    padding-left: 1.3cm;
-    padding-right: 1.5cm;
-}
-
-#hr1 {
+#botonSiguiente {
+    background-color: #99F52E;
     position: absolute;
-    top: 0.5cm;
-    left: 8.3cm;
-    background-color: black;
-    height: 25vh;
-    width: 0.08cm;
+    top: 33cm;
+    font-size: 25px;
+    text-decoration: underline;
+    
 }
 
-#hr2 {
-
-    position: absolute;
-    top: 0.5cm;
-    left: 18cm;
-    background-color: black;
-    height: 25vh;
-    width: 0.08cm;
-
+#mes, #team {
+    text-align: center;
+    font-size: 29px;
 }
-
-#hr3 {
-    position: absolute;
-    top: 1cm;
-    left: 8.3cm;
-    background-color: black;
-    height: 25vh;
-    width: 0.08cm;
-}
-
-#hr4 {
-    position: absolute;
-    top: 1cm;
-    left: 18cm;
-    background-color: black;
-    height: 25vh;
-    width: 0.08cm;
-}
-
 
 footer {
     position: absolute;
-    top: 49cm;
-    width: 26cm;
+    top: 35cm;
+    text-align: center;
+    width: 100%;
     background-color: #99F52E;
 }
 
 
 #subtittle {
     position: relative;
-    top: 2cm;
+    top: 1cm;
     font-size: 34px;
     text-align: center;
-    padding: 1cm;
     background-color: #99F52E;
     border-radius: 25px;
 }
@@ -95,15 +65,23 @@ footer {
     padding: 1cm;
 }
 
-table,
-th,
+th,tr,
 td {
     border: 3px solid black;
 }
 
+#tablaDeFechas {
+    position: relative;
+    top:4cm;
+    text-align: center;
+    width: 100%;
+    background-color: #99F52E;
+    
+}
+
 .navbar {
     position: relative;
-    top: 4cm;
+    top: 3cm;
     background-color: midnightblue;
 
 }
@@ -120,8 +98,8 @@ td {
 select {
     border: none;
     background-color: #99F52E;
-    width: 4cm;
-    border-radius: 25px;
+    width: 6cm;
+    border-radius: 9px;
 
 }
 

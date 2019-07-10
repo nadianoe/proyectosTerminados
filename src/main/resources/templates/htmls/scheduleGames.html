@@ -2,22 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-    <link rel="apple-touch-icon"
-        href="/static/images/identity/HTML5_Badge_64.png" />
-    <link rel="apple-touch-icon-precomposed"
-        href="/static/images/identity/HTML5_Badge_64.png" />
 
-
+    
+  
     <script src="../javaScript/fechasDeJuegos.js"></script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="../estilos/nysl_2.css" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="icon" href="../imagenes/nysl_logo.png" />
+    
+    <link rel="shortcut icon" href="../imagenes/nysl_logo.png">
     <title>Schedule games</title>
+    
 
 </head>
 
@@ -32,20 +29,18 @@
 
     <nav>
 
-        <a class="icono" href="../htmls/gameRules.html">
-            <img src="../imagenes/gameRules1.png" alt="HTML tutorial">
+        <a class=" icono" href="../htmls/gameRules.html">
+            <img class="" src="../imagenes/gameRules1.png" alt="HTML tutorial">
         </a>
 
-        <hr id="hr1">
 
         <a class="icono" href="../htmls/aboutNYSL.html">
-            <img src="../imagenes/aboutNYSL1.png" alt="HTML tutorial">
+            <img class="img-responsive" src="../imagenes/aboutNYSL1.png" alt="HTML tutorial">
         </a>
 
-        <hr id="hr2">
 
         <a class="icono" href="../htmls/gamesResults.html">
-            <img src="../imagenes/gamesResultsDale.png" alt="HTML tutorial">
+            <img class="img-responsive" src="../imagenes/gamesResultsDale.png" alt="HTML tutorial">
         </a>
 
     </nav>
@@ -58,31 +53,18 @@
 
     <div class="navbar">
 
-        <div class="options">
-            <select id="dia" onchange="imprimirTablaPorDia()">
-                <option value="day">day</option>
-                <option value="1">1</option>
-                <option value="6">6</option>
-                <option value="8">8</option>
-                <option value="15">15</option>
-                <option value="22">22</option>
-                <option value="29">29</option>
-                <option value="20">20</option>
-                <option value="27">27</option>
-            </select>
-        </div>
-
-        <div class="options">
             <select id="mes" onchange="imprimirTablaPorMes()">
-                <option value="month">month</option>
+                <option value="select month">select month</option>
+                <option value="all months">all months</option>
                 <option value="September">September</option>
                 <option value="October">October</option>
             </select>
-        </div>
+        
 
-        <div class="options">
+        
             <select id="team" onchange="imprimirTablaPorTeam()">
-                <option value="team">team</option>
+                <option value="select team">select team</option>
+                <option value="all teams">all teams</option>
                 <option value="U1">U1</option>
                 <option value="U2">U2</option>
                 <option value="U3">U3</option>
@@ -90,71 +72,40 @@
                 <option value="U5">U5</option>
                 <option value="U6">U6</option>
             </select>
-        </div>
-
     </div>
 
-    <div class="fondoContenido container">
-        <table id="tablaDeFechas" class="table table-hover text-center">
-
-
+   
+        <table id="tablaDeFechas" >
             <script>
-                imprimirTablaSinSelecciones();
 
-                function imprimirTablaSinSelecciones() {
-                    let valorDia = document.getElementById("dia").value;
-                    let valorMes = document.getElementById("mes").value;
-                    let valorTeam = document.getElementById("team").value;
-
-                    if (valorDia == "day" &&
-                        valorMes == "month" &&
-                        valorTeam == "team") {
-
-                        imprimirTabla(fechas);
-                    }
-                }
-
-
-                function imprimirTablaPorDia() {
-                    let valorDia = document.getElementById("dia").value;
-
-                    if (valorDia != "day") {
-                        document.getElementById("mes").value = "month";
-                        document.getElementById("team").value = "team";
-                        fechasBuscadas = filtrarMiembrosPorDia(valorDia);
-                        imprimirTabla(fechasBuscadas);
-                    }
-                }
+                imprimirTabla(fechas);
 
                 function imprimirTablaPorMes() {
                     let valorMes = document.getElementById("mes").value;
-                    if (valorMes != "month") {
-                        document.getElementById("dia").value = "day";
-                        document.getElementById("team").value = "team";
+                    if (valorMes != "select month" || valorMes != "all months") {
+                        document.getElementById("team").value = "select team";
                         fechasBuscadas = filtrarMiembrosPorMes(valorMes);
                         imprimirTabla(fechasBuscadas);
+                    }
+                    if (valorMes == "all months"){
+                        document.getElementById("team").value = "select team";
+                        imprimirTabla(fechas);
                     }
                 }
 
                 function imprimirTablaPorTeam() {
                     let valorTeam = document.getElementById("team").value;
-                    if (valorTeam != "team") {
-                        document.getElementById("dia").value = "day";
-                        document.getElementById("mes").value = "month";
+                    if (valorTeam != "all teams" || valorTeam != "select team") {
+                        document.getElementById("mes").value = "select month";
                         fechasBuscadas = filtrarMiembrosPorTeam(valorTeam);
                         imprimirTabla(fechasBuscadas);
                     }
+                    if (valorTeam == "all teams"){
+                        document.getElementById("mes").value = "select month";
+                        imprimirTabla(fechas);
+                    }
                 }
 
-                function filtrarMiembrosPorDia(numDia) {
-                    let fechasBuscadas = [];
-                    for (let i = 0; i < fechas.length; i++) {
-                        if (fechas[i].dia == numDia) {
-                            fechasBuscadas.push(fechas[i]);
-                        }
-                    }
-                    return fechasBuscadas;
-                }
 
                 function filtrarMiembrosPorMes(nameMes) {
                     let fechasBuscadas = [];
@@ -179,72 +130,71 @@
 
 
                 function imprimirTabla(fechas) {
-                    let tabla = "" +
-                        "<tr>" +
-                        "<th>date</th>" +
-                        "<th>times</th>" +
-                        "<th>teams</th>" +
-                        "<th>location</th>" +
-                        "<th>Map<br> ubication </th>" +
-                        "<th> Agendar</th>" +
-                        "</tr>";
+                    let tabla =
+                        "<tr>\n" +
+                        "<th>date</th>\n" +
+                        "<th>times</th>\n" +
+                        "<th>teams</th>\n" +
+                        "<th>location</th>\n" +
+                        "<th>Map<br> ubication</th>\n" +
+                        "<th> Agendar</th>\n" +
+                        "</tr>\n";
 
-                    tabla += "<tbody>";
+                    tabla += "<tbody>\n";
 
                     for (let i = 0; i < fechas.length; i++) {
 
-                        tabla += "<tr>";
+                        tabla += "<tr>\n";
                         tabla += "<td>" + fechas[i].mes + " " +
-                            fechas[i].dia + "</td>";
-                        tabla += "<td>" + fechas[i].horario + "</td>";
+                            fechas[i].dia + "</td>\n";
+                        tabla += "<td>" + fechas[i].horario + "</td>\n";
                         tabla += "<td>" + fechas[i].equipoUno + "-" +
-                            fechas[i].equipoDos + "</td>";
-                        tabla += "<td>" + fechas[i].lugar + "</td>";
+                            fechas[i].equipoDos + "</td>\n";
+                        tabla += "<td>" + fechas[i].lugar + "</td>\n";
                         tabla += "<td>" +
 
                             "<a class='redirection' href='" + fechas[i].linkGoogleMaps + "'>" +
-                            "<img src='../imagenes/googleMaps.jpg' alt='HTML tutorial'>" + "</a> " + "</td>";
+                            "<img src='../imagenes/googleMaps.jpg' alt='HTML tutorial'>" + "</a> \n" +
+                            "</td>\n";
 
                         tabla += "<td>" +
 
                             "<a class='redirection' href='https://www.google.com/calendar'>" +
                             "<img src='../imagenes/calendar.jpg' alt='HTML tutorial'>" +
-                            "</a>" + "</td>";
+                            "</a>\n" +
+                            "</td>\n" +
+                            "</tr>";
 
                     }
 
-                    tabla += "</tbody>";
+                    tabla += "</tbody>\n";
 
                     document.getElementById("tablaDeFechas").innerHTML = tabla;
+                    
                 }
 
             </script>
 
 
         </table>
-    </div>
+    
 
     <footer>
         <a class="icono" href="../htmls/scheduleGames.html">
-            <img src="../imagenes/scheduleGames.png" alt="HTML tutorial">
+            <img class="img-responsive" src="../imagenes/scheduleGames.png" alt="HTML tutorial">
         </a>
 
-        <hr id="hr3">
+
 
         <a class="icono" href="../htmls/nextGame.html">
-            <img src="../imagenes/nextGame.png" alt="HTML tutorial">
+            <img class="img-responsive" src="../imagenes/nextGame.png" alt="HTML tutorial">
         </a>
 
-        <hr id="hr4">
-
+        
         <a class="icono" href="../htmls/actualGame.html">
-            <img src="../imagenes/actualGame.png" alt="HTML tutorial">
+            <img class="img-responsive" src="../imagenes/actualGame.png" alt="HTML tutorial">
         </a>
     </footer>
-
-
-
-
 </body>
 
 
