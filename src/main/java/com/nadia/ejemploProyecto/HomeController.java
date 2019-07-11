@@ -22,9 +22,9 @@ public class HomeController {
    		return "aboutNYSL.html";
    }
     
-   @GetMapping("/gameResults")
+   @GetMapping("/gamesResults")
    public String gameResults(){
-   		return "gameResults.html";
+   		return "gamesResults.html";
    }
    
    @GetMapping("/scheduleGames")
