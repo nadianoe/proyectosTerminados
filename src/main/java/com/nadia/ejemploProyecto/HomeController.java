@@ -13,7 +13,7 @@ public class HomeController {
    }
    
    @GetMapping("/gameRules")
-   public String nextGame(){
+   public String gameRules(){
    		return "gameRules.html";
    }
     
