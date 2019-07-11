@@ -11,8 +11,28 @@ public class HomeController {
     public String home(){
        return "scheduleGames.html";
    }
+   
+   @GetMapping("/gameRules")
+   public String nextGame(){
+   		return "gameRules.html";
+   }
+    
+   @GetMapping("/aboutNYSL")
+   public String aboutNYSL(){
+   		return "aboutNYSL.html";
+   }
+    
+   @GetMapping("/gameResults")
+   public String gameResults(){
+   		return "gameResults.html";
+   }
+   
+   @GetMapping("/scheduleGames")
+   public String scheduleGames(){
+   		return "scheduleGames.html";
+   }
 
-   @GetMapping("/nextGame.html")
+   @GetMapping("/nextGame")
    public String nextGame(){
    		return "nextGame.html";
    }
