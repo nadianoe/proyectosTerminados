@@ -13,37 +13,32 @@ body {
 }
 
 
-nav {
 
-    text-align: center;
-    line-height: 50px;
+nav {
+    
+    height: 5.5cm;
     position: relative;
     background-color: #99F52E;
     width: 100%;
+    text-align: center;
     
 
 }
 
-#botonSiguiente {
-    background-color: #99F52E;
-    position: absolute;
-    top: 33cm;
-    font-size: 25px;
-    text-decoration: underline;
-    
-}
 
 #mes, #team {
-    text-align: center;
     font-size: 29px;
 }
 
 footer {
-    position: absolute;
-    top: 35cm;
+    position: fixed;
     text-align: center;
     width: 100%;
+    bottom:0px;
     background-color: #99F52E;
+    margin-bottom: 0cm;
+    height: 5cm;
+    
 }
 
 
@@ -56,14 +51,7 @@ footer {
     border-radius: 25px;
 }
 
-.fondoContenido {
-    position: relative;
-    top: 6cm;
-    background-color: #99F52E;
-    border-radius: 25px;
-    text-align: center;
-    padding: 1cm;
-}
+
 
 th,tr,
 td {
@@ -73,13 +61,16 @@ td {
 #tablaDeFechas {
     position: relative;
     top:4cm;
+    font-size: 34px;
     text-align: center;
     width: 100%;
     background-color: #99F52E;
+    margin-bottom: 7cm;
+    
     
 }
 
-.navbar {
+.filtros {
     position: relative;
     top: 3cm;
     background-color: midnightblue;
@@ -104,9 +95,52 @@ select {
 }
 
 .redirection {
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 1cm;
+    padding-right: 1cm;
 }
+
+
+#navLandscape {
+    background-color: #99F52E;
+}
+
+button {
+    border: none;
+    background-color: #99F52E;
+}
+
+@media (orientation: landscape) {
+    body {
+        background-color: aqua;
+    }
+}
+
+
+@media (max-width: 7.99cm) and (orientation: landscape) {
+    div#navPortrait {
+        display: none;
+    }
+    
+    nav {
+        height: 1cm;
+        padding: 0.3cm; 
+    }
+    
+    footer {
+        visibility: hidden;
+    }
+    
+    div#subtittle {
+        display: none;
+    }
+}
+
+@media (min-width: 8cm) {
+    div#navLandscape {
+        display: none;
+    }
+}
+
 
 
 
