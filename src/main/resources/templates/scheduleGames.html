@@ -87,27 +87,27 @@
                 imprimirTabla(fechas);
 
                 function imprimirTablaPorMes() {
-                    var valorMes = document.getElementById("mes").value;
+                    var valorMes = document.getElementById('mes').value;
                     if (valorMes != "select month" || valorMes != "all months") {
-                        document.getElementById("team").value = "select team";
+                        document.getElementById('team').value = "select team";
                         fechasBuscadas = filtrarMiembrosPorMes(valorMes);
                         imprimirTabla(fechasBuscadas);
                     }
                     if (valorMes == "all months"){
-                        document.getElementById("team").value = "select team";
+                        document.getElementById('team').value = "select team";
                         imprimirTabla(fechas);
                     }
                 }
 
                 function imprimirTablaPorTeam() {
-                    var valorTeam = document.getElementById("team").value;
+                    var valorTeam = document.getElementById('team').value;
                     if (valorTeam != "all teams" || valorTeam != "select team") {
-                        document.getElementById("mes").value = "select month";
+                        document.getElementById('mes').value = "select month";
                         fechasBuscadas = filtrarMiembrosPorTeam(valorTeam);
                         imprimirTabla(fechasBuscadas);
                     }
                     if (valorTeam == "all teams"){
-                        document.getElementById("mes").value = "select month";
+                        document.getElementById('mes').value = "select month";
                         imprimirTabla(fechas);
                     }
                 }
@@ -138,12 +138,8 @@
                 function imprimirTabla(fechas) {
                     var tabla =
                         "<tr>\n" +
-                        "<th>date</th>\n" +
-                        "<th>times</th>\n" +
                         "<th>teams</th>\n" +
-                        "<th>location</th>\n" +
-                        "<th>Map<br> ubication</th>\n" +
-                        "<th> Agendar</th>\n" +
+                        "<th>date</th>\n" +
                         "</tr>\n";
 
                     tabla += "<tbody>\n";
@@ -151,19 +147,17 @@
                     for (var i = 0; i < fechas.length; i++) {
 
                         tabla += "<tr>\n";
-                        tabla += "<td>" + fechas[i].mes + " " +
-                            fechas[i].dia + "</td>\n";
-                        tabla += "<td>" + fechas[i].horario + "</td>\n";
                         tabla += "<td>" + fechas[i].equipoUno + "-" +
-                            fechas[i].equipoDos + "</td>\n";
-                        tabla += "<td>" + fechas[i].lugar + "</td>\n";
-                        tabla += "<td>" +
+                                          fechas[i].equipoDos + "</td>\n";
+                        tabla +=  "<td>" + fechas[i].mes + ", " +
+                                   fechas[i].dia + "<br>";
+                        tabla +=   fechas[i].horario + ", " +
+                                   fechas[i].lugar + "<br>"
+                        
+                        tabla += 
 
                             "<a class='redirection' href='" + fechas[i].linkGoogleMaps + "'>" +
-                            "<img src='../imagenes/googleMaps.jpg' alt='HTML tutorial'>" + "</a> \n" +
-                            "</td>\n";
-
-                        tabla += "<td>" +
+                            "<img src='../imagenes/googleMaps.jpg' alt='HTML tutorial'>" + "</a>" + "                       " + 
 
                             "<a class='redirection' href='https://www.google.com/calendar'>" +
                             "<img src='../imagenes/calendar.jpg' alt='HTML tutorial'>" +
@@ -175,9 +169,10 @@
 
                     tabla += "</tbody>\n";
 
-                    document.getElementById("tablaDeFechas").innerHTML = tabla;
+                    document.getElementById('tablaDeFechas').innerHTML = tabla;
                     
                 }
+
 
             </script>
 
