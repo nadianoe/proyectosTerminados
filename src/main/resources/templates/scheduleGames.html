@@ -29,20 +29,26 @@
 
     <nav>
 
-        <a class=" icono" href="gameRules">
+        <div class="row" >
+        <div class="col" >
+        <a class=" icono" href="../htmls/gameRules.html">
             <img class="" src="../imagenes/gameRules1.png" alt="HTML tutorial">
         </a>
+        </div>
 
-
-        <a class="icono" href="aboutNYSL">
+        <div class="col">
+        <a class="icono" href="../htmls/aboutNYSL.html">
             <img class="img-responsive" src="../imagenes/aboutNYSL1.png" alt="HTML tutorial">
         </a>
+        </div>
 
-
-        <a class="icono" href="gamesResults">
+        <div class="col">
+        <a class="icono" href="../htmls/gamesResults.html">
             <img class="img-responsive" src="../imagenes/gamesResultsDale.png" alt="HTML tutorial">
         </a>
-
+        </div>
+            
+        </div>
     </nav>
 
     <div id="subtittle">
@@ -81,7 +87,7 @@
                 imprimirTabla(fechas);
 
                 function imprimirTablaPorMes() {
-                    let valorMes = document.getElementById("mes").value;
+                    var valorMes = document.getElementById("mes").value;
                     if (valorMes != "select month" || valorMes != "all months") {
                         document.getElementById("team").value = "select team";
                         fechasBuscadas = filtrarMiembrosPorMes(valorMes);
@@ -94,7 +100,7 @@
                 }
 
                 function imprimirTablaPorTeam() {
-                    let valorTeam = document.getElementById("team").value;
+                    var valorTeam = document.getElementById("team").value;
                     if (valorTeam != "all teams" || valorTeam != "select team") {
                         document.getElementById("mes").value = "select month";
                         fechasBuscadas = filtrarMiembrosPorTeam(valorTeam);
@@ -108,8 +114,8 @@
 
 
                 function filtrarMiembrosPorMes(nameMes) {
-                    let fechasBuscadas = [];
-                    for (let i = 0; i < fechas.length; i++) {
+                    var fechasBuscadas = [];
+                    for (var i = 0; i < fechas.length; i++) {
                         if (fechas[i].mes == nameMes) {
                             fechasBuscadas.push(fechas[i]);
                         }
@@ -118,8 +124,8 @@
                 }
 
                 function filtrarMiembrosPorTeam(nameTeam) {
-                    let fechasBuscadas = [];
-                    for (let i = 0; i < fechas.length; i++) {
+                    var fechasBuscadas = [];
+                    for (var i = 0; i < fechas.length; i++) {
                         if (fechas[i].equipoUno == nameTeam ||
                             fechas[i].equipoDos == nameTeam) {
                             fechasBuscadas.push(fechas[i]);
@@ -130,7 +136,7 @@
 
 
                 function imprimirTabla(fechas) {
-                    let tabla =
+                    var tabla =
                         "<tr>\n" +
                         "<th>date</th>\n" +
                         "<th>times</th>\n" +
@@ -142,7 +148,7 @@
 
                     tabla += "<tbody>\n";
 
-                    for (let i = 0; i < fechas.length; i++) {
+                    for (var i = 0; i < fechas.length; i++) {
 
                         tabla += "<tr>\n";
                         tabla += "<td>" + fechas[i].mes + " " +
@@ -180,20 +186,27 @@
     
 
     <footer>
-        <a class="icono" href="scheduleGames">
+        <div class="row" >
+        <div class="col" >
+        <a class="icono" href="../htmls/scheduleGames.html">
             <img class="img-responsive" src="../imagenes/scheduleGames.png" alt="HTML tutorial">
         </a>
+        </div>
 
-
-
-        <a class="icono" href="nextGame">
+        <div class="col">
+        <a class="icono" href="../htmls/nextGame.html">
             <img class="img-responsive" src="../imagenes/nextGame.png" alt="HTML tutorial">
         </a>
+        </div>
 
-        
-        <a class="icono" href="actualGame">
+        <div class="col" >
+        <a class="icono" href="../htmls/actualGame.html">
             <img class="img-responsive" src="../imagenes/actualGame.png" alt="HTML tutorial">
         </a>
+        </div>
+            
+        </div>
+        
     </footer>
 </body>
 
