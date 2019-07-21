@@ -109,11 +109,6 @@ button {
     background-color: #99F52E;
 }
 
-@media (orientation: landscape) {
-    body {
-        background-color: aqua;
-    }
-}
 
 
 @media (max-width: 7.99cm) and (orientation: landscape) {
