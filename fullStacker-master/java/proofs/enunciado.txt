@@ -1,0 +1,81 @@
+
+Se requiere crear un programa que será usado por hospitales. El mismo debe servir para registrar turnos pedidos.
+
+Cada hospital cuenta con una cantidad de turnos y 
+una cantidad de médicos por día según la especialidad.
+
+Por ejemplo, un hospital cuenta con las siguientes especialidades,
+cantidades de turnos y médicos:
+
+Oftalmología, 11 turnos, 1 médico.
+Pediatría, 28 turnos, 2 médicos.
+Cardiología, 39 turnos, 3 médicos.
+Medicina Clínica, 34 turnos, 2 médicos.
+
+La información requerida para entregar un turno es: nombre y apellido del paciente y especialidad del turno solicitado. El programa le asignará un número de turno y quedará guardado como dato del paciente.
+
+En las especialidades donde hay más de un médico, la cantidad
+de pacientes correspondientes se reparten en cantidades iguales
+por médico.
+
+Cuando un paciente es atendido, el programa debe permitir eliminarlo de la 
+lista de pacientes a atender que tiene el médico.
+
+Crear las clases necesarias para poder realizar lo pedido.
+
+
+
+Ayuda para armar las clases:
+
+---------------------------------
+[clase paciente]
+
+nombre 
+apellido
+especialidad
+número de turno
+
+...
+---------------------------------
+
+
+---------------------------------
+[clase médico]
+
+nombre
+apellido
+especialidad
+lista de pacientes 
+matricula nacional
+
+...
+---------------------------------
+
+
+---------------------------------
+
+[clase especialidad]
+
+lista de médico/s
+tipo de especialidad
+
+...
+---------------------------------
+
+
+---------------------------------
+
+[clase Hospital]
+
+nombre 
+direccion
+lista de especialidades
+
+...
+---------------------------------
+
+Se asume que todos los pacientes asisten al turno solcitado. 
+
+
+
+

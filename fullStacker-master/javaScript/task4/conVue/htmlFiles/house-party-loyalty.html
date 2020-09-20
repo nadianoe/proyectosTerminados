@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>house Party Loyalty</title>
+</head>
+
+<body id="pagina">
+    <script src="../jsFiles/statictis.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="../statics/js/bootstrap.js"></script>
+
+    <header class="navbar">
+        <div class="row align-items-center">
+            <img src="../imagenes/logo.png" alt="logo">
+            <h1>TGIF</h1>
+        </div>
+        <a href="#"> info@tfig.net</a>
+    </header>
+
+    <nav class="border border-secondary">
+        <ul class="nav bg-light">
+            <li class="nav-item">
+                <a class="btn btn-link" href="../htmlFiles/home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Congress 113</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house.html">House</a></li>
+                    <li><a href="../htmlFiles/senators.html">Senate</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Attendance</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house-attendance.html">House</a></li>
+                    <li><a href="../htmlFiles/senate-attendance.html">Senate</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Party Loyalty</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house-party-loyalty.html">House</a></li>
+                    <li><a href="../htmlFiles/senate-party-loyalty.html">Senate</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="row align-items p-5 bg">
+
+        <section class="col-sm-6">
+            <h2>Party Loyalty</h2>
+            <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda.</p><br>
+        </section>
+
+        <div>
+            <h2 class="text-right">House at a glance</h2>
+
+            <table class="table table-hover text-center col-sm-15" id="housePartyLoyalty">
+            </table>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+
+            <h2 class="text-right">Least Loyal (Bottom 10% of Party)</h2>
+
+            <table class="table table-hover text-center col-sm-15" id="leastLoyal">
+            </table>
+
+        </div>
+
+        <div class="col">
+
+            <h2 class="text-right">Most Loyal (Top 10% of Party)</h2>
+
+            <table class="table table-hover text-center col-sm-15" id="mostLoyal">
+            </table>
+
+        </div>
+
+    </div>
+
+    <footer id="sticky-footer" class="border border-secondary py-4 bg-light">
+        <div class="container text-center">
+            <small>&copy; 2016 TGIF | All Rights Reserved</small>
+        </div>
+    </footer>
+    
+    <script src="../jsFiles/vue.js"></script>
+    <script>
+        
+        var url = "https://api.propublica.org/congress/v1/113/house/members.json";
+    
+    </script>
+    <script src="../jsFiles/funciones.js"></script>
+    
+
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+qué es un componenete de vue
+cuáles son los frameworks mejores que vue
+qué es vue lbd, lo usan para usar el template creo
+-------
+Tareas:
+-------
+
+task3
+    diseñar un coso tipo mockup pero de cómo se vería en modo landscape
+    
+    usar media queries para hacer responsive la pagina (con los cambios para modo landscape)
+    
+    subir css con la parte de mediaqueries
+    subir html con  esas partes
+    y el js con esas partes que tienen relacion con los cambios hechos
+    
+    actualizar la pagina con éstas nuevas funcionalidades
+    
+    
+    
+    
+    luego, migrar a bootstrap
+    
+    linkearlo con bootstrap
+    
+    
+    juntar todas las paginas en una
+    poner cada una en un div asociado a las classes
+    necesarias para que se vean como paginas, se tienen que ver correctamente
+    
+    
+    agregar css para ocultar algunas paginas y que se vea una nada más
+    
+    agregar javascript para que SE TRANSICIONEN MUAJAJAJ AH RE
+    
+        
+    subir todo 
+    
+    
+    
+    
+    
+    

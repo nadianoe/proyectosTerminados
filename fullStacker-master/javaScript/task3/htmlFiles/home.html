@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="../statics/js/bootstrap.js"></script>
+
+
+
+    <header class="navbar">
+        <div class="row align-items-center">
+            <img src="../imagenes/logo.png" alt="logo">
+            <h1>TGIF</h1>
+        </div>
+        <a href="#"> info@tfig.net</a>
+    </header>
+
+  <nav class="border border-secondary">
+        <ul class="nav bg-light">
+            <li class="nav-item">
+                <a class="btn btn-link" href="../htmlFiles/home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Congress 113</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house.html">House</a></li>
+                    <li><a href="../htmlFiles/senators.html">Senate</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Attendance</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house-attendance.html">House</a></li>
+                    <li><a href="../htmlFiles/senate-attendance.html">Senate</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Party Loyalty</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house-party-loyalty.html">House</a></li>
+                    <li><a href="../htmlFiles/senate-party-loyalty.html">Senate</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="row align-items-center">
+    
+    <section id="texto" class="container p-5 bg col-sm-8">
+        <script>
+            
+            textoIncompleto();
+
+            function textoIncompleto() {
+                let primerParte = primerParteDelTexto() + linkReadMore();
+                document.getElementById("texto").innerHTML = primerParte;
+            }
+
+            function textoCompleto() {
+                let todoElTexto = primerParteDelTexto() + segundaParteDelTexto() +
+                    linkReadLess();
+                document.getElementById("texto").innerHTML = todoElTexto;
+            }
+
+            function segundaParteDelTexto() {
+                let otraMitadDeTexto =
+                    "<h3>Background History of Government Transparency</h3>" +
+                    "<p>In the West, the idea that government should be open to public scrutiny and susceptible to public opinion dates back at least to the time of the Enlightenment, when many philosophes made an attack on absolutist doctrine of state secrecy, a core part of their intellectual project. The passage of formal legislative instruments to this end can also be traced to this time with Sweden, for example, (which then included Finland as a Swedish-governed territory) enacting free press legislation as part of its constitution (Freedom of the Press Act, 1766). This approach, and that of the philosophes more broadly, is strongly related to recent historiography on the eighteenth-century public sphere." +
+                    "<p>Influenced by Enlightenment thought, the revolutions in America (1776) and France (1789), freedom of the press enshrined provisions and requirements for public budgetary accounting and freedom of the press in constitutional articles. In the nineteenth century, attempts by Metternichean statesmen to row back on these measures were vigorously opposed by a number of eminent liberal politicians and writers, Bentham, Mill and Acton prominent among the latter.</p>" +
+                    "<p>Open government is widely seen to be a key hallmark of contemporary democratic practice and is often linked to the passing of freedom of information legislation. Scandinavian countries claim to have adopted the first freedom of information legislation, dating the origins of its modern provisions to the eighteenth century and Finland continuing the presumption of openness after gaining independence in 1917, passing its Act on Publicity of Official Documents in 1951 (superseded by new legislation in 1999).</p>" +
+                    "<p>The United States passed its Freedom of Information Act (FOIA) in 1966, FOIAs, Access to Information Acts (AIAs) or equivalent laws were passed in Denmark and Norway in 1970.</p>";
+                return otraMitadDeTexto;
+            }
+
+            function linkReadMore() {
+                let link =
+                    "<div id='read-more'>" +
+                    "<button onclick='textoCompleto()' class='btn btn-link'>Read more</button>" +
+                    "</div>";
+                return link;
+            }
+
+            function primerParteDelTexto() {
+                let mitadDeTexto =
+                    "<h2>About Us</h2>" +
+                    "<p>Openness, accountability, and honesty define government transparency. In a free society, transparency is government's obligation to share information with citizens. It is at the heart of how citizens hold their public officials accountable. Here at TGIF we believe that government should be transparent.</p>" +
+                    "<p>Governments exist to serve the people. Information on how officials conduct the public business and spend taxpayer money must be readily available and easily understood. This transparency allows good and just governance. Transparency promotes accountability and provides information for citizens about what their Government is doing.</p>" +
+                    "<p>We also believe that government should be participatory. Public engagement enhances the Government's effectiveness and improves the quality of its decisions. Knowledge is widely dispersed in society, and public officials benefit from having access to that dispersed knowledge. We invite you to use our site to become actively engaged in American government.</p>" +
+                    "<p>TGIF works to disclose information in forms that the public can readily find and use. We solicit public feedback to identify information of greatest use to the public.</p><br>";
+                return mitadDeTexto;
+            }
+
+
+            function linkReadLess() {
+                let link =
+                    "<div id='read-less'>" +
+                    "<button onclick='textoIncompleto()' class='btn btn-link'>Read less</button>" +
+                    "</div>";
+                return link;
+            }
+
+        </script>
+    </section>
+       
+    <img src="../imagenes/lupa.png" alt="imagenDeLupa" class="col-sm-4 rounded-circle">
+       
+</div>
+
+
+
+
+
+
+
+    <footer id="sticky-footer" class="border border-secondary py-4 bg-light">
+        <div class="container text-center">
+            <small>&copy; 2016 TGIF | All Rights Reserved</small>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Senators</title>
+
+</head>
+
+<body>
+    <!--
+    <script src="../jsFiles/pro-congress-113-senate.js"></script>
+    -->
+    <script src="../jsFiles/statictis.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="../statics/js/bootstrap.js"></script>
+
+
+    <script>
+        var members = [];
+        var url = "https://api.propublica.org/congress/v1/113/senate/members.json";
+
+
+        $(function() {
+            fetch(url, {
+                method: 'GET',
+                headers: new Headers({
+                    "X-API-Key": "9wGuG70NAkERZGmNj91kDDg1WExSHeqOucfg2Abx"
+                })
+            }).then(function(response) {
+                console.log("Datos recibidos.");
+                return response.json();
+            }).then(function(json) {
+                senateData.members = json.results[0].members;
+                members = json.results[0].members;
+                imprimirLista(arregloDeEstados());
+
+            }).catch(function() {
+                console.log("Fail");
+            })
+        });
+
+    </script>
+
+    <header class="navbar">
+        <div class="row align-items-center">
+            <img src="../imagenes/logo.png" alt="logo">
+            <h1>TGIF</h1>
+        </div>
+        <a href="#"> info@tfig.net</a>
+    </header>
+
+    <nav class="border border-secondary">
+        <ul class="nav bg-light">
+            <li class="nav-item">
+                <a class="btn btn-link" href="../htmlFiles/home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Congress 113</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house.html">House</a></li>
+                    <li><a href="../htmlFiles/senators.html">Senate</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Attendance</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house-attendance.html">House</a></li>
+                    <li><a href="../htmlFiles/senate-attendance.html">Senate</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Party Loyalty</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house-party-loyalty.html">House</a></li>
+                    <li><a href="../htmlFiles/senate-party-loyalty.html">Senate</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="p-5 bg">
+        <h2>Senators</h2>
+        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p><br>
+
+
+        <form class="navbar">
+            <div>
+
+                Filter by Party:
+                <input type="radio" name="party" onchange="imprimirTablaConCheckboxes()" id="republicano-checkbox">
+                Republicano
+
+                <input type="radio" name="party" onchange="imprimirTablaConCheckboxes()" id="democrata-checkbox">
+                Democrata
+
+                <input type="radio" name="party" onchange="imprimirTablaConCheckboxes()" id="independiente-checkbox">
+                Independiente
+            </div>
+
+            <div>
+                Filter by State:
+                <select id="estados" onchange="imprimirTablaConDropdownMenu()">
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="container table-responsive">
+        <table class="table table-hover text-center" id="senate-data">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Full Name</th>
+                    <th>Party</th>
+                    <th>State</th>
+                    <th>Senority</th>
+                    <th>Percentage of votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="member in members">
+                    <td><a :href="member.url">{{member.first_name}} {{member.last_name}}</a></td>
+                    <td>{{member.party}} </td>
+                    <td>{{member.state}} </td>
+                    <td>{{member.seniority}} </td>
+                    <td>{{member.votes_with_party_pct}} %</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer id="sticky-footer" class="border border-secondary py-4 bg-light">
+        <div class="container text-center">
+            <small>&copy; 2016 TGIF | All Rights Reserved</small>
+        </div>
+    </footer>
+
+    <script src="../jsFiles/vue.js"></script>
+    <script src="../jsFiles/fun.js"></script>
+
+</body>
+
+</html>
+
+
+

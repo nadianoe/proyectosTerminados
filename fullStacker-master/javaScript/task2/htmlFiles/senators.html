@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Senators</title>
+
+</head>
+
+<body>
+    <script src="../jsFiles/pro-congress-113-senate.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="../statics/js/bootstrap.js"></script>
+
+    <header class="navbar">
+        <div class="row align-items-center">
+            <img src="../imagenes/logo.png" alt="logo">
+            <h1>TGIF</h1>
+        </div>
+        <a href="#"> info@tfig.net</a>
+    </header>
+
+    <nav class="border border-secondary">
+        <ul class="nav bg-light">
+            <li class="nav-item">
+                <a class="btn btn-link" href="../htmlFiles/home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link" data-toggle="dropdown">Congress 113</button>
+                <ul class="dropdown-menu">
+                    <li><a href="../htmlFiles/house.html">House</a></li>
+                    <li><a href="../htmlFiles/senators.html">Senate</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="p-5 bg">
+        <h2>Senators</h2>
+        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p><br>
+
+
+        <form class="navbar">
+            <div>
+            
+                Filter by Party:
+                <input type="radio" name="party" onchange="imprimirTablaConCheckboxes()" id="republicano-checkbox">
+                Republicano
+                
+                <input type="radio" name="party" onchange="imprimirTablaConCheckboxes()" id="democrata-checkbox">
+                Democrata
+                
+                <input type="radio" name="party" onchange="imprimirTablaConCheckboxes()" id="independiente-checkbox">
+                Independiente
+            </div>
+
+            <div>
+                Filter by State:
+                <select id="estados" onchange="imprimirTablaConDropdownMenu()">
+                    <script>
+                        imprimirLista(arregloDeEstados());
+
+                        function arregloDeEstados() {
+                            let estados = []
+                            for (let i = 0; i < members.length; i++) {
+                                estados.push(members[i].state);
+                            }
+                            estados = eliminoRepetidos(estados);
+                            return estados;
+                        }
+
+                        function eliminoRepetidos(arreglo) {
+                            let sinRepetidos = [];
+                            for (let i = 0; i < arreglo.length; i++) {
+                                if (!estaEnArreglo(sinRepetidos, arreglo[i])) {
+                                    sinRepetidos.push(arreglo[i]);
+                                }
+                            }
+                            return sinRepetidos;
+                        }
+
+                        function estaEnArreglo(unArray, valor) {
+                            var encontrado = false;
+                            if (unArray.length == 0) {
+                                encontrado = false;
+                            } else {
+                                for (var p = 0; p < unArray.length && !encontrado; p++) {
+                                    if (unArray[p] == valor) {
+                                        encontrado = true;
+                                    }
+                                }
+                            }
+                            return encontrado;
+                        }
+
+                        function imprimirLista(estados) {
+                            let lista = "<option value='Select'>Select</option>";
+                            lista = lista + "<option value='All'>All</option>";
+                            console.log(estados);
+                            for (let i = 0; i < estados.length; i++) {
+                                lista = lista + "<option value='" + estados[i] + "'>" + estados[i] + "</option>";
+                            }
+                            document.getElementById("estados").innerHTML = lista;
+                        }
+
+                        function imprimirTablaConDropdownMenu() {
+                            destildarCheckboxes();
+                            let arregloConMiembros = [];
+                            let optionSelected = document.getElementById("estados").value;
+                            let estados = arregloDeEstados();
+
+                            for (let i = 0; i < estados.length; i++) {
+                                if (optionSelected == estados[i]) {
+                                    arregloConMiembros = filtrarMiembrosPorEstadoOPartido(optionSelected);
+                                    imprimirTabla(arregloConMiembros);
+                                }
+                            }
+
+                            if (optionSelected == "All") {
+                                imprimirTabla(members);
+                            }
+                        }
+
+                        function deseleccionarEstado(){
+                            let estados = document.getElementsByTagName("option");
+                            for( let i = 0; i < estados.length; i++){
+                                estados[i].selected = false;
+                            }
+                        }
+
+                    </script>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="container table-responsive">
+        <table class="table table-hover text-center" id="senate-data">
+            <script>
+                imprimirTablaConCheckboxes();
+
+                function imprimirTabla(arregloConMiembros) {
+                    let tabla = "<thead class='thead-dark'>" +
+                        "<tr>" +
+                        "<th>Full Name</th>" +
+                        "<th>Party</th>" +
+                        "<th>State</th>" +
+                        "<th>Senority</th>" +
+                        "<th>Percentage of votes</th>" +
+                        "</tr>" +
+                        "</thead>";
+
+                    tabla = tabla + "<tbody>";
+
+                    for (let i = 0; i < arregloConMiembros.length; i++) {
+
+                        tabla = tabla + "<tr>";
+
+                        if (arregloConMiembros[i].last_name != null &&
+                            arregloConMiembros[i].first_name != null &&
+                            arregloConMiembros[i].middle_name != null) {
+
+                            tabla = tabla + "<td><a href='" + arregloConMiembros[i].url + "'>" +
+                                arregloConMiembros[i].last_name + " " +
+                                arregloConMiembros[i].first_name + " " +
+                                arregloConMiembros[i].middle_name + "</a></td>";
+
+                        } else if (arregloConMiembros[i].middle_name == null) {
+                            tabla = tabla + "<td><a href='" + arregloConMiembros[i].url + "'>" +
+                                arregloConMiembros[i].last_name + " " +
+                                arregloConMiembros[i].first_name + "</a></td>"
+                        }
+
+                        tabla += "<td>" + " " + arregloConMiembros[i].party + " " + "</td>";
+                        tabla += "<td>" + " " + arregloConMiembros[i].state + " " + "</td>";
+                        tabla += "<td>" + " " + arregloConMiembros[i].seniority + " " + "</td>";
+                        tabla += "<td>" + " " + arregloConMiembros[i].votes_with_party_pct + "%" + "</td></tr>";
+                    }
+
+                    tabla = tabla + "</tbody>";
+                    document.getElementById("senate-data").innerHTML = tabla;
+                }
+
+                function imprimirTablaConCheckboxes() {
+                    deseleccionarEstado();
+                    let arregloConMiembros = [];
+                    let checkboxDemocrata = document.getElementById('democrata-checkbox');
+                    let checkboxIndependiente = document.getElementById('independiente-checkbox');
+                    let checkboxRepublicanos = document.getElementById('republicano-checkbox');
+                    
+                    if (!checkboxDemocrata.checked && !checkboxIndependiente.checked &&
+                        !checkboxRepublicanos.checked) {
+                        imprimirTabla(members);
+                    }
+
+                    if (checkboxDemocrata.checked) {
+                        arregloConMiembros = filtrarMiembrosPorEstadoOPartido('D');
+                        imprimirTabla(arregloConMiembros);
+                    }
+
+                    if (checkboxIndependiente.checked) {
+                        arregloConMiembros = filtrarMiembrosPorEstadoOPartido('I');
+                        imprimirTabla(arregloConMiembros);
+                    }
+
+                    if (checkboxRepublicanos.checked) {
+                        arregloConMiembros = filtrarMiembrosPorEstadoOPartido('R');
+                        imprimirTabla(arregloConMiembros);
+                    }
+                }
+
+                function filtrarMiembrosPorEstadoOPartido(nombre) {
+                    let arregloFiltrado = [];
+                    for (let i = 0; i < members.length; i++) {
+                        if (members[i].party == nombre) {
+                            arregloFiltrado.push(members[i]);
+                        }
+                        if (members[i].state == nombre) {
+                            arregloFiltrado.push(members[i]);
+                        }
+                    }
+                    return arregloFiltrado;
+                }
+
+                function destildarCheckboxes(){
+                    let inputs = document.getElementsByName("party");
+                    for (let i = 0; i < inputs.length; i++){
+                        inputs[i].checked = false;
+                    }
+                }
+
+            </script>
+        </table>
+    </div>
+
+    <footer id="sticky-footer" class="border border-secondary py-4 bg-light">
+        <div class="container text-center">
+            <small>&copy; 2016 TGIF | All Rights Reserved</small>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

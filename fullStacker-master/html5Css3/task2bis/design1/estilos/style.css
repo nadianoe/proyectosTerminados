@@ -1,0 +1,88 @@
+body {
+    background-color: greenyellow;
+}
+
+#fondo_header {
+
+    width: 35.28cm;
+    height: 13cm;
+    position: absolute;
+
+
+
+}
+
+#titlee {
+
+    color: midnightblue;
+    font-family: Arial black;
+    font-size: 50px;
+    position: absolute;
+
+
+}
+
+nav {
+
+    background-color: midnightblue;
+    text-align: left;
+    line-height: 50px;
+    position: relative;
+    top: 13cm;
+
+}
+
+#logo {
+    position: absolute;
+    top: -1.80cm;
+    left: 30cm;
+
+
+
+}
+
+
+.naav {
+
+    color: greenyellow;
+    font-family: Arial black;
+    text-decoration: none;
+    padding: 45px;
+}
+
+#img {
+
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 35px;
+    margin-bottom: 200px;
+    float: left;
+    position: left;
+
+}
+
+section {
+
+    margin-top: 40px;
+    font-weight: 700;
+    font-family: Arial;
+    color: midnightblue;
+    text-align: left;
+    font-size: 19px;
+    position: absolute;
+    top: 13cm;
+}
+
+#mail {
+    color: darkslateblue;
+    font-weight: 600;
+    text-decoration-line: underline;
+
+}
+
+
+h1,
+h4 {
+
+    font-weight: 900;
+}

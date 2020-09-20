@@ -1,0 +1,78 @@
+body {
+    background-color: greenyellow;
+}
+
+#logo {
+
+    float: left;
+    margin-right: 25px;
+    margin-left: 25px;
+
+}
+
+#titlee {
+
+    text-align: center;
+    line-height: 200px;
+    color: midnightblue;
+    font-family: Arial black;
+    font-size: 50px;
+}
+
+header {
+
+    margin-top: 1px;
+    margin-bottom: 1px;
+
+}
+
+.naav {
+
+    color: greenyellow;
+    font-family: Arial black;
+    text-decoration: none;
+    padding: 45px;
+}
+
+nav {
+    margin-top: -25px;
+    background-color: midnightblue;
+    text-align: center;
+    line-height: 50px;
+
+}
+
+#img {
+
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 35px;
+    margin-bottom: 200px;
+    float: left;
+    position: left;
+
+}
+
+section {
+
+    margin-top: 40px;
+    font-weight: 700;
+    font-family: Arial;
+    color: midnightblue;
+    text-align: left;
+    font-size: 19px;
+}
+
+#mail {
+    color: darkslateblue;
+    font-weight: 600;
+    text-decoration-line: underline;
+
+}
+
+
+h1,
+h4 {
+
+    font-weight: 900;
+}

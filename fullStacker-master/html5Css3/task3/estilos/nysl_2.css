@@ -1,0 +1,184 @@
+body {
+    background-color: greenyellow;
+}
+
+#fondo_header {
+
+    width: 100%;
+    height: 10.7cm;
+    position: relative;
+    top: 2cm;
+}
+
+#titlee {
+
+    color: black;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    font-style: italic;
+    font-stretch: extra-expanded;
+    position: absolute;
+    left: 0.5cm;
+    top: -0.5cm;
+
+}
+
+#title_bar {
+    color: black;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 30px;
+    background: white;
+    padding-top: 0.25cm;
+    padding-bottom: 0.25cm;
+    text-align: center;
+    position: relative;
+}
+
+#logo {
+
+    position: absolute;
+    top: 13.5cm;
+    left: 0.5cm;
+    width: 250px;
+    height: 250px;
+}
+
+
+nav {
+
+    text-align: right;
+    line-height: 50px;
+    position: absolute;
+    top: 1.5cm;
+    left: 9.2cm;
+
+}
+
+a {
+    text-decoration: none;
+    padding: 6px;
+    padding-left: 0.6cm;
+    padding-right: 0.6cm;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    background-color: midnightblue;
+    border-radius: 2px;
+    box-shadow: 8px 8px 0px 0px #000000;
+}
+
+a:link,
+a:visited {
+    background-color: midnightblue;
+}
+
+
+body.home a.home:visited,
+body.about a.about:visited,
+body.game a.game:visited,
+body.rules a.rules:visited,
+body.contact a.contact:visited {
+    background-color: darkgreen;
+}
+
+section {
+
+    margin-top: 10px;
+    margin-left: 8cm;
+    font-family: Verdana, Geneva, sans-serif;
+    color: black;
+    text-align: left;
+    font-size: 11px;
+    position: absolute;
+    top: 14cm;
+}
+
+#mail {
+
+    color: darkblue;
+    background-color: greenyellow;
+    font-weight: 600;
+    text-decoration-line: underline;
+    box-shadow: none;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+h2 {
+
+    font-weight: 900;
+    font-size: 20px;
+}
+
+h4 {
+
+    font-weight: 600;
+    font-size: 16px;
+    font-style: italic;
+}
+
+h5 {
+    margin-left: 1.5cm;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+p {
+    margin-left: 1.5cm;
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+ul, ol {
+    font-size: 16px;
+}
+
+.items_separados {
+    margin: 1cm;
+}
+
+#subrayado {
+    text-decoration: underline;
+    font-weight: 300;
+}
+
+th {
+    text-decoration: underline;
+    font-size: 22px;
+    width: 5cm;
+}
+
+tr {
+    font-size: 18px;
+    width: 5cm;
+}
+
+.columnaT3 {
+    text-decoration: none;
+    font-size: 20px;
+    width: 8cm;
+}
+
+.t3 {
+    font-size: 16px;
+}
+
+.final {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+div {
+    display: inline-table;
+    margin-top: -1cm;
+}
+
+#foot1 {
+    padding-right: 5.5cm;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <title>senate attendence</title>
+
+    </head>
+
+    <body>
+        <script src="../jsFiles/pro-congress-113-senate.js"></script>
+        <script src="../jsFiles/statictis.js"></script>
+        <script src="../jsFiles/funciones.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="../statics/js/bootstrap.js"></script>
+
+        <header class="navbar">
+            <div class="row align-items-center">
+                <img src="../imagenes/logo.png" alt="logo">
+                <h1>TGIF</h1>
+            </div>
+            <a href="#"> info@tfig.net</a>
+        </header>
+
+        <nav class="border border-secondary">
+            <ul class="nav bg-light">
+                <li class="nav-item">
+                    <a class="btn btn-link" href="../htmlFiles/home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-link" data-toggle="dropdown">Congress 113</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="../htmlFiles/house.html">House</a></li>
+                        <li><a href="../htmlFiles/senators.html">Senate</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-link" data-toggle="dropdown">Attendance</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="../htmlFiles/house-attendance.html">House</a></li>
+                        <li><a href="../htmlFiles/senate-attendance.html">Senate</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-link" data-toggle="dropdown">Party Loyalty</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="../htmlFiles/house-party-loyalty.html">House</a></li>
+                        <li><a href="../htmlFiles/senate-party-loyalty.html">Senate</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="row align-items p-5 bg">
+
+            <section class="col-sm-6">
+                <h2>Attendance</h2>
+                <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+
+                <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p><br>
+            </section>
+
+
+            <div>
+                <h2 class="text-right">Senate at a glance</h2>
+
+                <table class="table table-hover text-center col-sm-15" id="senate-at-a-glance">
+                    <script>
+
+                        setearNumeroDeRepresentantes();
+                        setearPorcentajeVotes();
+                        imprimirTablaUno("senate-at-a-glance");
+                
+                    </script>
+                </table>
+            </div>
+            
+            
+            
+        </div>
+        
+        <div class="row">
+            
+            <div class="col">
+                
+            <h4 class="text-center">Least Engaged (Bottom 10% Attendance)</h4>
+
+                <table class="table table-hover text-center col-sm-15" id="leastEngaged">
+            
+                    <script>
+        
+        let miembrosOrdenados = miembrosOrdenadosSegunValor(members,"missed");
+                        
+        let miembrosTabla2 = getBottomTenPrc(miembrosOrdenados);
+        imprimirTabla("missed", miembrosTabla2,"leastEngaged");
+                        
+                    </script>
+               
+                   
+                </table>
+            
+            </div>
+      
+            <div class="col">
+                
+            <h4 class="text-center">Most Engaged (Top 10% Attendance)</h4>
+
+                <table class="table table-hover text-center col-sm-15" id="mostEngaged">
+                    
+                    <script>
+                        
+        let miembrosTabla3 = getTopTenPrc(miembrosOrdenados);
+        imprimirTabla("missed", miembrosTabla3,"mostEngaged");
+                        
+                    </script>
+                
+                
+                </table>
+            
+            </div>
+        
+            
+        </div>
+
+        <footer id="sticky-footer" class="border border-secondary py-4 bg-light">
+            <div class="container text-center">
+                <small>&copy; 2016 TGIF | All Rights Reserved</small>
+            </div>
+        </footer>
+        
+    </body>
+    
+</html>
