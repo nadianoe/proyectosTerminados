@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" manifest="cache.manifest">
+
+<head>
+
+    <meta charset="UTF-8">
+    
+    <script src="js/funciones.js"></script>
+    <script src="js/fechasDeJuegos.js"></script>
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="js/gmaps.js"></script>
+
+    <link href="css/nysl_2.css" rel="stylesheet" type="text/css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+    <link rel="shortcut icon" href="../img/nysl_logo.png">
+
+    <title>Schedule games</title>
+
+</head>
+
+<body style="background-color: midnightblue">
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCh4PdykUD4zTAbLdasT8hdq7oQ7b-bnnk",
+            authDomain: "task4-nmatias.firebaseapp.com",
+            databaseURL: "https://task4-nmatias.firebaseio.com",
+            projectId: "task4-nmatias",
+            storageBucket: "",
+            messagingSenderId: "214967992046",
+            appId: "1:214967992046:web:e92d575f903205f4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.firestore().enablePersistence()
+            .catch(function(err) {
+                if (err.code == 'failed-precondition') {
+                    // Multiple tabs open, persistence can only be enabled
+                    // in one tab at a a time.
+                    // ...
+                } else if (err.code == 'unimplemented') {
+                    // The current browser does not support all of the
+                    // features required to enable persistence
+                    // ...
+                }
+            });
+
+    </script>
+
+    <header>
+
+    </header>
+
+    <nav>
+
+        <div class="row" id="navPortrait">
+
+            <div class="col">
+                <img class="img-responsive" src="img/gameRules.png" onclick="showPage('gameRules')" aria-activedescendant="" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="img/aboutNYSL.png" onclick="showPage('about')" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="img/login.jpg" onclick="showPage('login')" alt="HTML tutorial">
+            </div>
+
+        </div>
+
+        <div class="row" id="navLandscape">
+            <div class="col boton">
+                <button type="button" onclick="showPage('gameRules')">game rules</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('about')">about NYSL</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('login')">login</button>
+            </div>
+            <div class="col boton ">
+                <button type="button" onclick="showPage('schedule')">schedule games</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('nextGame')">next game</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('actualGame')">actual game</button>
+            </div>
+        </div>
+
+    </nav>
+
+    <div id="paginas">
+
+        <div id="gameRules" class="container">
+
+            <div class="subtittle">
+
+                game rules
+
+            </div>
+
+            <div class="contenidoPagina">
+
+            </div>
+
+        </div>
+
+        <div id="about" class="container">
+            <div class="subtittle">
+
+                about NYSL
+
+            </div>
+            <div class="contenidoPagina">
+
+            </div>
+        </div>
+
+        <div id="login" class="container">
+
+            <div class="subtittle">
+
+                log in
+
+            </div>
+
+            <div class="contenidoPagina">
+
+                <form id="formLogin">
+                    email
+                    <br>
+                    <input type="email" id="email">
+                    <br>
+                    password
+                    <br>
+                    <input type="password" id="password">
+                    <br>
+                    <br>
+                    <button type="button" onclick="ingresar()">ingresar </button>
+                    <br>
+                    <br>
+                    <button type="button" onclick="registrarse()">registrarse</button>
+                    <br>
+                </form>
+
+                <div id="privateInfo">
+                    <p class="loading"></p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="scheduleGames" class="container">
+
+            <div class="subtittle">
+
+                Schedule games
+
+            </div>
+
+            <table id="tablaDeFechas" class="container">
+
+                <script>
+                    imprimirTabla(fechas);
+
+                </script>
+
+            </table>
+
+        </div>
+
+        <div id="nextGame" class="container">
+            <div class="subtittle">
+
+                next game
+
+            </div>
+            <div class="contenidoPagina">
+
+            </div>
+
+        </div>
+
+        <div id="actualGame" class="container">
+            <div class="subtittle">
+
+                actual game
+
+            </div>
+
+            <div class="contenidoPagina">
+
+            </div>
+        </div>
+
+        <div id="chat" class="container">
+
+            <div class="subtittle">
+                chat
+            </div>
+
+            <div class="contenidoPagina">
+                <div class="navbar">   
+                    <button type="button" onclick="showPage('preferencias')">
+                    preferencias
+                    </button>
+                    <img src="img/camara.png" onclick="showPage('camara')">
+                </div>
+
+                <div id="mensajesEnviados">
+                </div>
+                <br>
+                <input type="text" id="mensaje">
+                <br>
+                <button onclick="enviarMensaje();almacenarMensaje()" id="enviar">Enviar</button>
+                <br>
+
+
+            </div>
+
+        </div>
+
+        <div id="preferencias" class="container">
+
+            <div class="subtittle">
+                preferencias de modo offline
+            </div>
+
+            <div class="contenidoPagina">
+                <br>
+                <h5>opción cuando se desconecta de internet: </h5>
+                <input type="checkbox" onchange="updateSendLater()" id="sendLater" checked>enviar mensaje cuando vuelva la conexión
+                <br>
+                <br>
+                cada cuantos minutos desea que se vuelva a intentar a publicar?
+                <input type="datetime" id="minFrecuencia" value="0">
+                <input type="submit" onclick="updateFrecuencia()" value="submit">
+
+                <script>
+                    localStorage.setItem("checkboxTurnedOn", "true");
+                    localStorage.setItem("valorFrecuencia", 0);
+
+                </script>
+
+            </div>
+
+        </div>
+
+        <div id="mapa" class="container contenidoPagina">
+
+            <div id="map" style="height: 16cm"></div>
+
+
+            <script>
+                var map = new GMaps({
+                    el: '#map',
+                    lat: 0,
+                    lng: 0
+                });
+
+                GMaps.geolocate({
+                    success: function(position) {
+                        lat = position.coords.latitude;
+                        lng = position.coords.longitude;
+                        //Definimos la vista del mapa sobre las coordenadas obtenidas
+                        map.setCenter(lat, lng);
+                        //Añadimos un marcador
+                        map.addMarker({
+                            lat: lat,
+                            lng: lng
+                        });
+                    },
+                    error: function(error) {
+                        alert('Geolocation failed: ' + error.message);
+                    },
+                    not_supported: function() {
+                        alert("Your browser does not support geolocation");
+                    }
+                });
+
+                map.addMarker({
+                    lat: 41.929754,
+                    lng: -87.645914,
+                    title: 'Marjorie P Hart Elementary'
+                });
+
+                map.addMarker({
+                    lat: 41.913922,
+                    lng: -87.637839,
+                    title: 'Greenbay Elementary'
+                });
+
+                map.addMarker({
+                    lat: 41.900444,
+                    lng: -87.629077,
+                    title: 'AJ Katzenmaier Elementary'
+                });
+
+                map.addMarker({
+                    lat: 41.923408,
+                    lng: -87.662931,
+                    title: 'Howard A Yeager Elementary'
+                });
+
+                map.addMarker({
+                    lat: 41.923408,
+                    lng: -87.662931,
+                    title: 'South Elementary'
+                });
+                map.addMarker({
+                    lat: 41.907280,
+                    lng: -87.646172,
+                    title: 'South Elementary'
+                });
+
+            </script>
+            
+
+
+
+        </div>
+        
+        <div id="camara" class="container">
+            
+             <div class="contenidoPagina">
+            navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions);
+            
+            </div>
+        
+        </div>
+
+    </div>
+
+    <script>
+        var gameRules = document.getElementById("gameRules");
+        var about = document.getElementById("about");
+        var login = document.getElementById("login");
+        var schedule = document.getElementById("scheduleGames");
+        var nextGame = document.getElementById("nextGame");
+        var actualGame = document.getElementById("actualGame");
+        var chat = document.getElementById("chat");
+        var mapa = document.getElementById("mapa");
+        var preferencias = document.getElementById("preferencias");
+        var camara = document.getElementById("camara");
+        
+
+        var connectedRef = firebase.database().ref(".info/connected");
+
+        var nroMensaje = 0;
+
+        var baseDeDatosMensajes = firebase.database();
+
+        var seEnvioMensajeOffline = false;
+
+
+
+        baseDeDatosMensajes.ref('todosLosMensajes').on('child_added', function(data) {
+            $('#mensajesEnviados').append('<p>' + data.val().mensaje + '</p>');
+
+        });
+
+
+
+        connectedRef.on("value", function(snap) {
+
+            if (snap.val() === false) {
+                console.log("no hay conección")
+            } else {
+                console.log("conectado");
+            }
+
+            if (snap.val() === false && seEnvioMensajeOffline == true) {
+                console.log("intentando enviar mensaje según minutos definidos");
+                offLine();
+            }
+
+        });
+
+
+        gameRules.style.display = "none";
+        about.style.display = "none";
+        login.style.display = "none";
+        schedule.style.display = "block";
+        nextGame.style.display = "none";
+        actualGame.style.display = "none";
+        chat.style.display = "none";
+        mapa.style.display = "none";
+        preferencias.style.display = "none";
+
+
+        window.addEventListener('load', function(e) {
+
+            window.applicationCache.addEventListener('updateready', function(e) {
+                if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+                    // Browser downloaded a new app cache.
+                    if (confirm('A new version of this site is available. Load it?')) {
+                        window.location.reload();
+                    }
+                } else {
+                    // Manifest didn't changed. Nothing new to server.
+                }
+            }, false);
+
+        }, false);
+
+    </script>
+
+    <footer id="iconosAbajo">
+
+        <div class="row">
+            <div class="col">
+                <img class="img-responsive" src="img/scheduleGames.png" onclick="showPage('schedule')" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="img/nextGame.png" onclick="showPage('nextGame')" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="img/actualGame.png" onclick="showPage('actualGame')" alt="HTML tutorial">
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
