@@ -1,0 +1,35 @@
+[debug] [2019-07-07T01:33:36.541Z] ----------------------------------------------------------------------
+[debug] [2019-07-07T01:33:36.554Z] Command:       /home/nmatias/.nvm/versions/node/v8.16.0/bin/node /home/nmatias/.nvm/versions/node/v8.16.0/bin/firebase init
+[debug] [2019-07-07T01:33:36.555Z] CLI Version:   7.0.2
+[debug] [2019-07-07T01:33:36.555Z] Platform:      linux
+[debug] [2019-07-07T01:33:36.555Z] Node Version:  v8.16.0
+[debug] [2019-07-07T01:33:36.556Z] Time:          Sat Jul 06 2019 22:33:36 GMT-0300 (-03)
+[debug] [2019-07-07T01:33:36.556Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-07T01:33:36.605Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-07T01:33:36.606Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/nmatias/Desktop/nysl-task2
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[debug] [2019-07-07T01:33:44.184Z] TypeError: Cannot read property 'setRawMode' of null
+    at ReadStream.setRawMode (tty.js:57:16)
+    at Interface._setRawMode (readline.js:241:16)
+    at Interface.close (readline.js:365:10)
+    at ReadStream.ontermend (readline.js:154:10)
+    at emitNone (events.js:111:20)
+    at ReadStream.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:139:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:219:9)
