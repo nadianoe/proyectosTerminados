@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <div id="app-2">
+        <span v-bind:title="message">
+            ¡Deja tu mouse sobre este mensaje unos segundos para ver el atributo `title` enlazado dinámicamente!
+        </span>
+    </div>
+
+    <div id="example-2">
+        <!-- `greet` is the name of a method defined below -->
+        <button v-on:click="greet">Greet</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello zlkjvkls ctm Vue!'
+            }
+        })
+
+
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: 'You loaded this page on ' + new Date()
+            }
+        })
+
+        var example2 = new Vue({
+            el: '#example-2',
+            data: {
+                name: 'Vue.js'
+            },
+            // define métodos dentro del objeto `methods`
+            methods: {
+                greet: function(event) {
+                    // `this` dentro de los métodos apunta a la instancia de Vue
+                    alert('Hello ' + this.name + '!')
+                    // `event` es el evento nativo del DOM
+                    if (event) {
+                        alert(event.target.tagName)
+                    }
+                }
+            }
+        })
+        // puedes invocar métodos en JavaScript tamibién
+        example2.greet() // -> 'Hello Vue.js!'
+
+    </script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../javaScript/fechasDeJuegos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="../estilos/nysl_2.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <link rel="shortcut icon" href="../imagenes/nysl_logo.png">
+    <title>Schedule games</title>
+</head>
+
+<body style="background-color: midnightblue">
+
+    <header>
+    </header>
+
+    <!-- game rules -->
+    <div id="gameRules">
+        <div id="subtittle">
+            game rules
+        </div>
+
+        <div>
+
+            <img class="img-responsive" id="fechaLeft" onclick="scheduleGames()" src="../imagenes/flechaLeft.jpg" alt="HTML tutorial">
+            
+        </div>
+
+        <div>
+            <img class="img-responsive" id="flechaDer" onclick="aboutNYSL()" src="../imagenes/flechaDerecha.jpg" alt="HTML tutorial">
+        </div>
+
+    </div>
+
+    <!-- about nysl -->
+    <div id="aboutNYSL">
+
+        <div id="subtittle">
+
+            Abour NYSL
+
+        </div>
+  
+        <div>
+
+            <img class="img-responsive" id="fechaLeft" onclick="gameRules()" src="../imagenes/flechaLeft.jpg" alt="HTML tutorial">
+
+        </div>
+
+        <div>
+            <img class="img-responsive" id="flechaDer" onclick="gameResults()" src="../imagenes/flechaDerecha.jpg" alt="HTML tutorial">
+        </div>
+
+
+    </div>
+
+    <!-- game results -->
+    <div id="gameResults">
+        <div id="subtittle">
+
+            game results
+
+        </div>
+
+        
+        <div>
+
+            <img class="img-responsive" id="fechaLeft" onclick="aboutNYSL()" src="../imagenes/flechaLeft.jpg" alt="HTML tutorial">
+
+        </div>
+
+        <div>
+            <img class="img-responsive" id="flechaDer" onclick="scheduleGames()" src="../imagenes/flechaDerecha.jpg" alt="HTML tutorial">
+        </div>
+
+
+    </div>
+
+    <!-- schedule games -->
+    <div id="scheduleGames">
+
+        <div id="subtittle">
+
+            Schedule games
+
+        </div>
+
+        <div class="filtros navbar">
+
+            <select id="mes" onchange="imprimirTablaPorMes()">
+                <option value="select month">select month</option>
+                <option value="all months">all months</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+            </select>
+
+
+
+            <select id="team" onchange="imprimirTablaPorTeam()">
+                <option value="select team">select team</option>
+                <option value="all teams">all teams</option>
+                <option value="U1">U1</option>
+                <option value="U2">U2</option>
+                <option value="U3">U3</option>
+                <option value="U4">U4</option>
+                <option value="U5">U5</option>
+                <option value="U6">U6</option>
+            </select>
+        </div>
+
+
+        <table id="tablaDeFechas" class="container">
+            <script>
+                imprimirTabla(fechas);
+
+                function imprimirTablaPorMes() {
+                    var valorMes = document.getElementById('mes').value;
+                    if (valorMes != "select month" || valorMes != "all months") {
+                        document.getElementById('team').value = "select team";
+                        fechasBuscadas = filtrarMiembrosPorMes(valorMes);
+                        imprimirTabla(fechasBuscadas);
+                    }
+                    if (valorMes == "all months") {
+                        document.getElementById('team').value = "select team";
+                        imprimirTabla(fechas);
+                    }
+                }
+
+                function imprimirTablaPorTeam() {
+                    var valorTeam = document.getElementById('team').value;
+                    if (valorTeam != "all teams" || valorTeam != "select team") {
+                        document.getElementById('mes').value = "select month";
+                        fechasBuscadas = filtrarMiembrosPorTeam(valorTeam);
+                        imprimirTabla(fechasBuscadas);
+                    }
+                    if (valorTeam == "all teams") {
+                        document.getElementById('mes').value = "select month";
+                        imprimirTabla(fechas);
+                    }
+                }
+
+
+                function filtrarMiembrosPorMes(nameMes) {
+                    var fechasBuscadas = [];
+                    for (var i = 0; i < fechas.length; i++) {
+                        if (fechas[i].mes == nameMes) {
+                            fechasBuscadas.push(fechas[i]);
+                        }
+                    }
+                    return fechasBuscadas;
+                }
+
+                function filtrarMiembrosPorTeam(nameTeam) {
+                    var fechasBuscadas = [];
+                    for (var i = 0; i < fechas.length; i++) {
+                        if (fechas[i].equipoUno == nameTeam ||
+                            fechas[i].equipoDos == nameTeam) {
+                            fechasBuscadas.push(fechas[i]);
+                        }
+                    }
+                    return fechasBuscadas;
+                }
+
+
+                function imprimirTabla(fechas) {
+                    var tabla =
+                        "<tr>\n" +
+                        "<th>teams</th>\n" +
+                        "<th>date</th>\n" +
+                        "</tr>\n";
+
+                    tabla += "<tbody>\n";
+
+                    for (var i = 0; i < fechas.length; i++) {
+
+                        tabla += "<tr>\n";
+                        tabla += "<td>" + fechas[i].equipoUno + "-" +
+                            fechas[i].equipoDos + "</td>\n";
+                        tabla += "<td>" + fechas[i].mes + ", " +
+                            fechas[i].dia + "<br>";
+                        tabla += fechas[i].horario + ", " +
+                            fechas[i].lugar + "<br>"
+
+                        tabla +=
+
+                            "<a class='redirection' href='" + fechas[i].linkGoogleMaps + "'>" +
+                            "<img src='../imagenes/googleMaps.jpg' alt='HTML tutorial'>" + "</a>" + "                       " +
+
+                            "<a class='redirection' href='https://www.google.com/calendar'>" +
+                            "<img src='../imagenes/calendar.jpg' alt='HTML tutorial'>" +
+                            "</a>\n" +
+                            "</td>\n" +
+                            "</tr>";
+
+                    }
+
+                    tabla += "</tbody>\n";
+
+                    document.getElementById('tablaDeFechas').innerHTML = tabla;
+
+                }
+
+            </script>
+
+
+        </table>
+
+
+        
+        <div>
+
+            <img class="img-responsive" id="fechaLeft" onclick="gameResults()" src="../imagenes/flechaLeft.jpg" alt="HTML tutorial">
+
+        </div>
+
+        <div>
+            <img class="img-responsive" id="flechaDer" onclick="nextGame()" src="../imagenes/flechaDerecha.jpg" alt="HTML tutorial">
+        </div>
+
+
+    </div>
+
+    <!-- next game -->
+    <div id="nextGame">
+        <div id="subtittle">
+
+            next game
+
+        </div>
+        
+        <div>
+
+            <img class="img-responsive" id="fechaLeft" onclick="scheduleGame()" src="../imagenes/flechaLeft.jpg" alt="HTML tutorial">
+            
+        </div>
+
+        <div>
+            <img class="img-responsive" id="flechaDer" onclick="actualGame()" src="../imagenes/flechaDerecha.jpg" alt="HTML tutorial">
+        </div>
+
+    </div>
+
+    <!-- actual game -->
+    <div id="actualGame">
+        <div id="subtittle">
+            actual game
+        </div>
+
+        
+        <div>
+
+            <img class="img-responsive" id="fechaLeft" onclick="nextGame()" src="../imagenes/flechaLeft.jpg" alt="HTML tutorial">
+
+        </div>
+
+        <div>
+            <img class="img-responsive" id="flechaDer" onclick="gameRules()" src="../imagenes/flechaDerecha.jpg" alt="HTML tutorial">
+        </div>
+
+        
+    </div>
+
+</body>
+
+    <script>
+        var paginas = guardoContenidos();
+        console.log(paginas);
+        scheduleGames();
+        
+        function guardoContenidos(){
+            var paginas = [];
+            var gameRules = document.getElementById("gameRules").innerHTML;
+            paginas.push(gameRules);
+            var aboutNYSL = document.getElementById("aboutNYSL").innerHTML;
+            paginas.push(aboutNYSL);
+            var gameResults = document.getElementById("gameResults").innerHTML;
+            paginas.push(gameResults);
+            var scheduleGame = document.getElementById("scheduleGames").innerHTML;
+            paginas.push(scheduleGame);
+            var nextGame = document.getElementById("nextGame").innerHTML;
+            paginas.push(nextGame);
+            var actualGame = document.getElementById("actualGame").innerHTML;
+            paginas.push(actualGame);
+            return paginas;
+        }
+        
+        function scheduleGames(){
+            document.getElementsByTagName("body").innerHTML = paginas[3];
+        }
+
+    </script>
+
+
+
+
+</html>

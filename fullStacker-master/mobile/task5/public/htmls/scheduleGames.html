@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="US-ASCII">
+    <meta charset="UTF-8">
+
+    <script src="../javaScript/funciones.js"></script>
+    <script src="../javaScript/fechasDeJuegos.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="../estilos/nysl_2.css" rel="stylesheet" type="text/css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+    <link rel="shortcut icon" href="../imagenes/nysl_logo.png">
+
+    <title>Schedule games</title>
+
+</head>
+
+<body style="background-color: midnightblue">
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDGhSDL9crePI9lFGkogaSZw6ORuCpeQj0",
+            authDomain: "task6-nmatias.firebaseapp.com",
+            databaseURL: "https://task6-nmatias.firebaseio.com",
+            projectId: "task6-nmatias",
+            storageBucket: "",
+            messagingSenderId: "839624513543",
+            appId: "1:839624513543:web:2a6ac321864e45d3"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+    </script>
+
+    <header>
+
+    </header>
+
+    <nav>
+
+        <div class="row" id="navPortrait">
+
+            <div class="col">
+                <img class="img-responsive" src="../imagenes/gameRules1.png" onclick="showPage('gameRules')" aria-activedescendant="" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="../imagenes/aboutNYSL1.png" onclick="showPage('about')" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="../imagenes/login.jpg" onclick="showPage('login')" alt="HTML tutorial">
+            </div>
+
+        </div>
+
+        <div class="row" id="navLandscape">
+            <div class="col boton">
+                <button type="button" onclick="showPage('gameRules')">game rules</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('about')">about NYSL</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('login')">login</button>
+            </div>
+            <div class="col boton ">
+                <button type="button" onclick="showPage('schedule')">schedule games</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('nextGame')">next game</button>
+            </div>
+            <div class="col boton">
+                <button type="button" onclick="showPage('actualGame')">actual game</button>
+            </div>
+        </div>
+
+    </nav>
+
+    <div id="paginas" class="row">
+
+        <div class="col" id="gameRules">
+
+            <div class="subtittle">
+
+                game rules
+
+            </div>
+
+            <div class="container">
+
+            </div>
+
+        </div>
+
+        <div class="col" id="about">
+            <div class="subtittle">
+
+                about NYSL
+
+            </div>
+            <div class="container">
+
+            </div>
+        </div>
+
+        <div class="col" id="login">
+
+            <div class="subtittle">
+
+                log in
+
+            </div>
+
+            <div class="contenidoPagina">
+
+                <form id="formLogin">
+                    email
+                    <br>
+                    <input type="email" id="email">
+                    <br>
+                    password
+                    <br>
+                    <input type="password" id="password">
+                    <br>
+                    <br>
+                    <button type="button" onclick="ingresar()">ingresar </button>
+                    <br>
+                    <br>
+                    <button type="button" onclick="registrarse()">registrarse</button>
+                    <br>
+                </form>
+
+                <div id="privateInfo">
+                    <p class="loading"></p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col" id="scheduleGames">
+
+            <div class="subtittle">
+
+                Schedule games
+
+            </div>
+
+            <table id="tablaDeFechas" class="container">
+
+                <script>
+                    imprimirTabla(fechas);
+
+                </script>
+
+            </table>
+
+        </div>
+
+        <div class="col" id="nextGame">
+            <div class="subtittle">
+
+                next game
+
+            </div>
+
+        </div>
+
+        <div class="col" id="actualGame">
+            <div class="subtittle">
+
+                actual game
+
+            </div>
+        </div>
+
+        <div class="col" id="chat">
+
+            <div class="subtittle">
+                chat
+
+
+            </div>
+
+            <div class="contenidoPagina">
+
+                <div id="mensajesEnviados">
+                </div>
+                <br>
+                <input type="text" id="mensaje">
+                <br>
+                <button onclick="guardarMensaje()" id="enviar">Enviar</button>
+                <br>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div id="contenidoPrincipal">
+
+
+    </div>
+
+    <script>
+        var gameRules = document.getElementById("gameRules").innerHTML;
+        var about = document.getElementById("about").innerHTML;
+        var login = document.getElementById("login").innerHTML;
+        var schedule = document.getElementById("scheduleGames").innerHTML;
+        var nextGame = document.getElementById("nextGame").innerHTML;
+        var actualGame = document.getElementById("actualGame").innerHTML;
+        var chat = document.getElementById("chat").innerHTML;
+
+        showPage("schedule");
+
+    </script>
+
+
+    <footer id="iconosAbajo">
+
+        <div class="row">
+            <div class="col">
+                <img class="img-responsive" src="../imagenes/scheduleGames.png" onclick="showPage('schedule')" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="../imagenes/nextGame.png" onclick="showPage('nextGame')" alt="HTML tutorial">
+            </div>
+
+            <div class="col">
+                <img class="img-responsive" src="../imagenes/actualGame.png" onclick="showPage('actualGame')" alt="HTML tutorial">
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="/__/firebase/6.3.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#reserved-urls -->
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyCh4PdykUD4zTAbLdasT8hdq7oQ7b-bnnk",
+            authDomain: "task4-nmatias.firebaseapp.com",
+            databaseURL: "https://task4-nmatias.firebaseio.com",
+            projectId: "task4-nmatias",
+            storageBucket: "",
+            messagingSenderId: "214967992046",
+            appId: "1:214967992046:web:e92d575f903205f4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+    </script>
+
+    <script>
+        var baseDeDatosMensajes = firebase.database();
+
+        $(document).ready(function() {
+
+            baseDeDatosMensajes.ref('mensajes').on('child_added', function(data) {
+                $('#mensajesEnviados').append('<p>' + data.val().mensaje + '</p><br>');
+            });
+
+        });
+
+        $(document).ready(function() {
+            $("a").click(function() {
+                alert("Hola Mundo con jQuery!");
+            });
+        });
+
+    </script>
+</body>
+
+</html>

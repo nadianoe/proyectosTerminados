@@ -1,0 +1,36 @@
+
+<div class="filtros navbar">
+
+    <select id="mes" onchange="imprimirTablaPorMes()">
+        <option value="select month">select month</option>
+        <option value="all months">all months</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+    </select>
+
+    <select id="team" onchange="imprimirTablaPorTeam()">
+        <option value="select team">select team</option>
+        <option value="all teams">all teams</option>
+        <option value="U1">U1</option>
+        <option value="U2">U2</option>
+        <option value="U3">U3</option>
+        <option value="U4">U4</option>
+        <option value="U5">U5</option>
+        <option value="U6">U6</option>
+    </select>
+</div>
+
+
+<div id="flechas" class="row">
+
+    <div class="col">
+        <button class="flecha" type="button" name="flechaLeft" onclick="previousPage()"> ⇦ </button>
+    </div>
+
+    <div class="col">
+        <button class="flecha" type="button" onclick="nextPage()"> ⇨ </button>
+    </div>
+
+</div>
+
+

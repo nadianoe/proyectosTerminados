@@ -1,0 +1,110 @@
+body {
+    background-color: midnightblue;
+}
+
+
+#logo {
+
+    position: absolute;
+    top: 13.5cm;
+    left: 10cm;
+    width: 250px;
+    height: 250px;
+}
+
+
+nav {
+
+    text-align: center;
+    line-height: 50px;
+    position: relative;
+    background-color: #99F52E;
+    width: 100%;
+    
+
+}
+
+#botonSiguiente {
+    background-color: #99F52E;
+    position: absolute;
+    top: 33cm;
+    font-size: 25px;
+    text-decoration: underline;
+    
+}
+
+#mes, #team {
+    text-align: center;
+    font-size: 29px;
+}
+
+footer {
+    position: absolute;
+    top: 35cm;
+    text-align: center;
+    width: 100%;
+    background-color: #99F52E;
+}
+
+
+#subtittle {
+    position: relative;
+    top: 1cm;
+    font-size: 34px;
+    text-align: center;
+    background-color: #99F52E;
+    border-radius: 25px;
+}
+
+.fondoContenido {
+    position: relative;
+    top: 6cm;
+    background-color: #99F52E;
+    border-radius: 25px;
+    text-align: center;
+    padding: 1cm;
+}
+
+th,tr,
+td {
+    border: 3px solid black;
+}
+
+#tablaDeFechas {
+    position: relative;
+    top:4cm;
+    text-align: center;
+    width: 100%;
+    background-color: #99F52E;
+}
+
+.navbar {
+    position: relative;
+    top: 3cm;
+    background-color: midnightblue;
+}
+
+.options {
+    border-radius: 25px;
+    background-color: #99F52E;
+    padding: 1cm;
+    font-size: 25px;
+    height: 3cm;
+    text-align: center;
+}
+
+select {
+    border: none;
+    background-color: #99F52E;
+    width: 6cm;
+    border-radius: 9px;
+
+}
+
+.redirection {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+
+

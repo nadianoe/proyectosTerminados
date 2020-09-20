@@ -1,0 +1,128 @@
+dependenias de javascript
+coso con net
+android 
+todo para reactalkdsjf  
+
+APRENDER RUBY
+tecnologías sugeridas: java o .net pues bancos o empresas
+grandes. HAy migraciones de java a .net o .net a java. coso
+
+metodologia kiss?
+metodologia mvvm y mvc
+kajflka qué chori son esas cosas
+
+Sally, una madre trabajadora que tiene que equilibrar los horarios de fin de semana de tres niños.
+Bob, un padre voluntario en los juegos.
+Chris, un miembro del equipo de 13 años que juega intensamente.
+El amigo de Bob pregunta si pueden reunirse el sábado. Bob abre la aplicación para ver cuándo está ocurriendo el juego.
+
+Sally está a punto de llevar a su hija a un juego y necesita saber a qué campo ir.
+Chris quiere saber contra qué equipo están jugando hoy.
+
+home, 
+
+ver los juegos por día, con hora y lugar
+
+http://vcomputadoras.com/maneja-datos-de-mysql-con-ajax/
+https://www.oscarblancarteblog.com/tutoriales/java-persistence-api-jpa/
+
+
+
+
+
+
+
+-----------------------------------------
+
+
+aplicación o coso harripotense 
+con realidad aumentada
+
+proceso
+funcionalidades basicas
+login? 
+gestión de token?
+
+enviar invitacion, token o login
+tokens dinámicos?
+authO o twiio? laksjflkas qué chori es eso?
+api google para login?
+
+
+app --> login --> api google
+	      --> provide login
+	      --> roles --> alumno, padres, docentes, no docentes
+
+pantalla padres (elegir hijos, name1, name2, etc)
+	notas
+	faltas
+	comunicados
+	calendario
+
+aplicación con automatizacion?
+tenemos cargados un hijo por defecto
+evento con comunicacion y etc ah re
+
+
+2da pantalla, la del hijo
+calendario con las faltas de los pibes que tiene el padre
+y un coso que diga 8/25, 8 faltas de 25 para quedarse libre
+lista de materias y después despliega 
+
+clase edit text
+clase view
+clase toast
+ver main activity
+agregaratributo protected EditText cajaPassword;
+
+R constante, qué chori es. Buscarlkajsdkfljakl
+
+spring init en el buscador
+maven project
+dependencias: web, jpa, devtools, thymeleaf
+gropus ids, son empresas
+	ej, spring tiene uno que se llama org o no sé
+no elegir m4, y no snapshot porque son marca acme ah re
+
+maven y gradle son gestores de dependencias
+grupoid, la empresa en si
+
+es al revéz, PORQUÉLKJDFLA
+AR.COM.GOOGLE EJEMPLO XD
+
+EL ARTIFACT, QUÉ ES
+	DEFINE EL NOSE QUÉ DE NUESTRO PROYECTO
+	EL NOMBRE DEL PROYECTO
+
+grupo de personas que está en el proyecto, es grupoid
+artifact es el nombre del proyecto. 
+dos grupos pueden estar desarrollando el mismo tipo de proyecto
+
+si es un war, necesitamos un servidor.
+
+si usamos un jar, no necesitamos un servidor.
+
+artifacts, 
+
+
+java 11 y 8 son estables
+y la 12 se empieza a cobrar jajaja
+
+dependencias, qué librerias vamos a usar
+
+agregar dependecias: 
+		web
+		devtools
+		thymeleaf
+		h2
+		jpa
+
+crearnos cuenta en heroku.com
+80 microservicios
+qué es?
+
+heroku es un host medianamente gratis
+
+git push -u "url"
+git remove add origin "myurl"
+git push --set-upsetream origin master

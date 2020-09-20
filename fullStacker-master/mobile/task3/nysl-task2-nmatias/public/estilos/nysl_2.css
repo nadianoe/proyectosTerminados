@@ -1,0 +1,169 @@
+body {
+    background-color: midnightblue;
+}
+
+
+#logo {
+
+    position: absolute;
+    top: 13.5cm;
+    left: 10cm;
+    width: 250px;
+    height: 250px;
+}
+
+
+
+nav {
+    
+    position: relative;
+    background-color: #99F52E;
+    width: 100%;
+    text-align: center;
+    
+
+}
+
+
+#mes, #team {
+    font-size: 29px;
+}
+
+footer {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom:0px;
+    background-color: #99F52E;
+    margin-bottom: 0cm;
+    height: 5cm;
+    
+}
+
+#flechas {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom:0px;
+    margin-bottom: 0cm;
+   
+}
+
+
+#subtittle {
+    position: relative;
+    top: 1cm;
+    font-size: 34px;
+    text-align: center;
+    background-color: #99F52E;
+    border-radius: 25px;
+}
+
+
+
+th,tr,
+td {
+    border: 3px solid black;
+}
+
+#tablaDeFechas {
+    position: relative;
+    top:4cm;
+    font-size: 34px;
+    text-align: center;
+    width: 100%;
+    background-color: #99F52E;
+    margin-bottom: 7cm;
+    
+    
+}
+
+.filtros {
+    position: relative;
+    top: 3cm;
+    background-color: midnightblue;
+}
+
+.options {
+    border-radius: 25px;
+    background-color: #99F52E;
+    padding: 1cm;
+    font-size: 25px;
+    height: 3cm;
+    text-align: center;
+}
+
+select {
+    border: none;
+    background-color: #99F52E;
+    width: 6cm;
+    border-radius: 9px;
+}
+
+.redirection {
+    padding-left: 1cm;
+    padding-right: 1cm;
+}
+
+
+div#navLandscape {
+    background-color: #99F52E;
+    display:none;
+}
+
+div.col {
+    background-color: #99F52E;
+    border-radius: 15px;
+}
+
+a {
+   color: midnightblue;
+   text-decoration: none; 
+}
+
+@media only screen and (orientation: landscape)
+                   and (max-device-width: 999px){
+   
+    div#navLandscape {
+        display: inline-flex;
+        background-color:midnightblue;
+    }
+    
+
+    div#navPortrait {
+        display: none;
+    }
+    
+    nav {
+        height: 1.7cm;
+        padding: 0.3cm;
+        background-color: midnightblue; 
+    }
+    
+    footer#iconosAbajo{
+        display: none;
+    }
+    
+    div#subtittle {
+        font-size: 24px;
+        top: 0.5cm;
+    }
+
+    .filtros {
+        top:1cm;
+    }
+
+    #tablaDeFechas {
+        top: 2cm;
+    }
+     
+}
+
+
+    
+
+
+
+
+
+

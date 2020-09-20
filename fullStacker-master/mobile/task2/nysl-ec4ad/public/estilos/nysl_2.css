@@ -1,0 +1,106 @@
+body {
+    background-color: midnightblue;
+}
+
+
+#logo {
+
+    position: absolute;
+    top: 6.75cm;
+    left: 5cm;
+    width: 125px;
+    height: 125px;
+}
+
+.iconos {
+    height: 50%;
+    width: 50%;
+}
+
+
+nav {
+    
+    height: 2.75cm;
+    position: relative;
+    background-color: #99F52E;
+    width: 100%;
+    text-align: center;
+    
+
+}
+
+
+#mes, #team {
+    font-size: 15px;
+}
+
+footer {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom:0px;
+    background-color: #99F52E;
+    margin-bottom: 0cm;
+    height: 3cm;
+    
+}
+
+
+#subtittle {
+    position: relative;
+    top: 0.5cm;
+    font-size: 17px;
+    text-align: center;
+    background-color: #99F52E;
+    border-radius: 25px;
+}
+
+
+
+th,tr,
+td {
+    border: 3px solid black;
+}
+
+#tablaDeFechas {
+    position: relative;
+    top:2cm;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    background-color: #99F52E;
+    margin-bottom: 3.5cm;
+    
+    
+}
+
+.filtros {
+    position: relative;
+    top: 1.5cm;
+    background-color: midnightblue;
+
+}
+
+.options {
+    border-radius: 25px;
+    background-color: #99F52E;
+    padding: 0.5cm;
+    font-size: 12.5px;
+    height: 1.5cm;
+    text-align: center;
+}
+
+select {
+    border: none;
+    background-color: #99F52E;
+    width: 3cm;
+    border-radius: 9px;
+
+}
+
+.redirection {
+    padding-left: 0.5cm;
+    padding-right: 0.5cm;
+}
+
+
