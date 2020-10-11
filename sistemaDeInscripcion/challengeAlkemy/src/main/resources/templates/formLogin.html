@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Salvo</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body class="container">
+
+<div class="nav row">
+
+    <input class="col" onclick="logout()" id="logoutButton" style="display: none;" type="button" value="LOGOUT">
+
+</div>
+
+<div style="text-align: left">
+
+    <h3 class="col">Ingreso al sistema de inscripcion</h3>
+
+    <form>
+        <div class="form-group">
+            <label for="username">Usuario</label>
+            <input class="form-control" id="username" placeholder="ingrese usuario" >
+            <small class="form-text text-muted">número de DNI</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Constraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="tipoDeUsuario">
+            <label class="form-check-label" for="tipoDeUsuario">Soy administrador</label>
+        </div>
+
+        <button class="btn btn-primary" type="button" onclick="login()">SIGN IN</button>
+
+    </form>
+
+</div>
+
+<script>
+    var idAlumno;
+
+    function obtenerIdAlumno(valorUser) {
+
+        $.ajax({
+            url: "/api/idAlumno",
+            type: 'GET',
+            data: { dni : valorUser }
+        })
+            .done(function (data) {
+                console.log(data);
+                idAlumno = data.idAlumno;
+                var paginaAlumno = "http://localhost:8080/alumno/" + idAlumno + "/sistema";
+                $(location).prop('href', paginaAlumno);
+
+            })
+            .fail(function (qXHR, textStatus, errorThrown) {
+                console.log("error, no se pudo obtener id de alumno");
+                console.log(qXHR,textStatus,errorThrown);
+            });
+
+    }
+
+    function login() {
+
+        var user = $("#username").val();
+        console.log(user);
+        var pass = $("#password").val();
+        console.log(pass);
+
+        var tipoDeUsuario = "";
+
+        if ($("input[type='checkbox']").is(':checked') === true) {
+            tipoDeUsuario = "ADMIN";
+        } else {
+            tipoDeUsuario = "USER";
+        }
+
+        $.ajax({
+            url: "/api/login",
+            type: 'POST',
+            data: {
+                username: user,
+                password: pass
+            }
+        })
+            .done(function (data) {
+
+
+                console.log("El usuario ha ingresado!");
+                console.log("obteniendo datos de juegos ...")
+
+                if (tipoDeUsuario == "ADMIN") {
+                    var paginaAdmin = "http://localhost:8080/admin/sistema";
+                    $(location).prop('href', paginaAdmin);
+                } else {
+                    obtenerIdAlumno(user);
+                }
+
+
+
+            })
+            .fail(function (qXHR, textStatus, errorThrown) {
+                alert("error, no se pudo iniciar sesión.");
+            });
+
+    }
+
+</script>
+
+</body>
+
+</html>

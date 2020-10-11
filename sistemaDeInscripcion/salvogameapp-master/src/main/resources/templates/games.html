@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Salvo</title>
+    <link href="css/games.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+
+<body class="container">
+    
+    <div class="nav row">
+        
+        <h3 class="col" >salvoooo gameeees</h3>
+         
+        <input class="col" onclick="logout()" id="logoutButton" style="display: none;" type="button" value="LOGOUT">
+        
+        <input class="col" onclick="createGame()" id="createGame" style="display: none;" type="button" value="CREATE GAME">
+     
+    </div>
+    
+    
+        <script>
+            
+            $(document).ready(function() {
+
+              $.ajax({
+                        url: "/api/games",
+                        type: 'GET'
+                    })
+                    .done(function (data) {
+                  
+                        console.log(data);
+                        
+                        var logoutButton = document.getElementById("logoutButton");
+                            
+                        if (data.player != null) {
+                            console.log("usuario conectado detectado..");
+                            loginState(data.games, data.player);
+                        }else{
+                            logoutState();
+                        }
+
+                    })
+                    .fail(function () {
+                        console.log("error, no se pudo obtener datos");
+                    });
+
+                });
+
+    
+    </script>
+    
+
+    
+    <div id="infoGamePlayer" style="display: none;">
+
+    </div>
+
+    <form id="loginForm" class="container" style="display: none;">
+
+        <h5>Username (email): </h5>
+        <input autocomplete="username" id="username" type="email">
+
+        <h5>Password: </h5>
+        <input autocomplete="current-password" id="password" type="password">
+
+        <br>
+
+        <input onclick="login()" type="button" value="SIGN IN">
+        <br>
+        <input onclick="singup()" type="button" value="SIGN UP">
+    </form>
+    
+    <div id="gamesList" style="display: none;">
+
+    </div>
+
+    <script>
+        var infoGamePlayer = document.getElementById("infoGamePlayer");
+        var loginForm = document.getElementById("loginForm");
+        var logoutButton = document.getElementById("logoutButton");
+        var gamesList = document.getElementById("gamesList");
+        var createGameButton = document.getElementById("createGame");
+    </script>
+    
+    <script src="js/games.js"></script>
+
+
+</body>
+
+</html>

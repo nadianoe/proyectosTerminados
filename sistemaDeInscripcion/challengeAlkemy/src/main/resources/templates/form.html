@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>adsfasdf</title>
+    <link href="css/games.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body class="container">
+
+<div class="nav row">
+
+    <h3 class="col">Sistema de inscripcion</h3>
+
+    <input class="col" onclick="logout()" id="logoutButton" style="display: none;" type="button" value="LOGOUT">
+
+    <input class="col" onclick="createGame()" id="createGame" style="display: none;" type="button" value="CREATE GAME">
+
+</div>
+
+
+</div>
+
+<form>
+    <div class="form-group">
+        <label for="username">Usuario</label>
+        <input class="form-control" id="username" placeholder="ingrese usuario">
+        <small class="form-text text-muted">número de DNI</small>
+    </div>
+    <div class="form-group">
+        <label for="password">Constraseña</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="tipoDeUsuario">
+        <label class="form-check-label" for="tipoDeUsuario">Soy administrador</label>
+    </div>
+
+    <button class="btn btn-primary" type="button" onclick="login()" value="sing in"></button>
+
+</form>
+
+
+</div>
+
+<script>
+
+    function login() {
+
+        var user = $("#username").val();
+        console.log(user);
+        var pass = $("#password").val();
+        console.log(pass);
+
+        location.reload;
+
+        $.ajax({
+            url: "/api/login",
+            type: 'POST',
+            data: {
+                username: user,
+                password: pass
+            }
+        })
+            .done(function(data) {
+
+
+                userPlayer = "";
+                passPlayer = "";
+
+                console.log("El usuario ha ingresado!");
+                console.log("obteniendo datos de juegos ...")
+
+                $.ajax({
+                    url: "/api/info",
+                    type: 'GET',
+                    data: { tipoDeUsuario : "USER"}
+                })
+                    .done(function (data) {
+                        console.log(data);
+
+                        if (data.player != null) {
+                            console.log("usuario conectado detectado..");
+                            loginState(data.games, data.player);
+                            console.log("listo");
+                        }
+                    })
+                    .fail(function () {
+                        console.log("error, no se pudo obtener datos");
+                    });
+
+            })
+            .fail(function (qXHR, textStatus, errorThrown) {
+                alert("error, no se pudo iniciar sesión.");
+            });
+
+    }
+</script>
+
+</body>
+
+</html>

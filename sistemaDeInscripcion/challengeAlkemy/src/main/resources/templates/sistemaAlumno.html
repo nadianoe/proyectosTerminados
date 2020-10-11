@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body class="container">
+
+<h3 class="card-title" > Sistema de inscripción</h3>
+
+<div id="opciones">
+
+    <button class="btn btn-primary" onclick="logout()" type="button"> LOG OUT </button><br>
+    <button class="btn btn-info" onclick="listarMaterias()" type="button"> LISTAR OFERTA DE MATERIAS</button>
+
+</div>
+
+<div id="materias" style="display: none;">
+
+
+</div>
+
+<script>
+
+    function obtenerIdAlumno(){
+        var urlActual = $(location).attr('href');
+        var idAlumno =  urlActual.charAt(29);
+        return idAlumno;
+    }
+
+    function listarMaterias() {
+
+        $.ajax({
+            url: "/api/alumno/infoMaterias",
+            type: 'GET'
+        })
+            .done(function (data) {
+                console.log(data);
+                console.log(data.materias[0].nombre);
+                materias = data.materias;
+
+                for (var i = 0; i < materias.length; i++) {
+
+                    var element = materias[i];
+
+                    var infoMateria = "<div class=\"card\">";
+                    infoMateria += "<div class=\"card-body\">";
+                    infoMateria += "<h5 class=\"card-title\">" + element.nombre + "</h5>";
+                    var infoProfesor = element.nombreProfesor + " " + element.apellidoProfesor;
+                    infoMateria += "<p class=\"card-text\"> Profesor: " + infoProfesor + "</p>";
+                    infoMateria += "<p class=\"card-text\"> Inicio: " + element.horarioInicio + "</p>";
+                    infoMateria += "<p class=\"card-text\"> Final: " + element.horarioFinal + "</p>";
+                    infoMateria += "<p class=\"card-text\"> Cupo: " + element.cupo + "</p>";
+                    infoMateria += "</div>";
+                    infoMateria += "<button onclick='incribirseAMateria(" + element.id + ")' ";
+                    infoMateria += "class=\"btn btn-primary\">INCRIBIRSE </button>";
+                    infoMateria += "</div>";
+
+                    $("#materias").append(infoMateria);
+
+                }
+
+                $("#materias").show();
+
+
+
+            })
+            .fail(function (qXHR, textStatus, errorThrown) {
+                console.log("error, no se pudo obtener datos");
+                console.log(qXHR,textStatus,errorThrown);
+            });
+
+    }
+
+    function incribirseAMateria(idMateria) {
+
+        var idAlumno = obtenerIdAlumno();
+
+        $.ajax({
+            url: "/api/alumno/"+ idAlumno +"/inscribirse",
+            type: 'POST',
+            data: {idMateria : idMateria }
+        })
+            .done(function (data) {
+                console.log(data);
+
+            })
+            .fail(function (qXHR, textStatus, errorThrown) {
+                console.log("error, no se pudo obtener datos");
+                console.log(qXHR, textStatus, errorThrown);
+            });
+    }
+
+    function logout() {
+
+        $.ajax({
+            url: "/api/logout",
+            type: 'GET',
+            datatype: 'json'
+        })
+            .done(function () {
+                var paginaInicio= "http://localhost:8080/";
+                $(location).prop('href', paginaInicio);
+            })
+            .fail(function (qXHR, textStatus, errorThrown) {
+                console.log("error, no se pudo cerrar sesión");
+                console.log(qXHR, textStatus, errorThrown);
+            });
+    }
+
+</script>
+
+
+</body>
+
+</html>

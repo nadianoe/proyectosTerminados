@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>sistema</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="css/game.css" rel="stylesheet" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+</head>
+
+<body>
+    
+    <div class="nav row">
+        
+        <h3 class="col" >Bienvenido al sistema de inscripcion </h3>
+        
+        <input class="col" onclick="logout()" id="logoutButton" style="display: none;" type="button" value="LOGOUT">
+        
+        <input class="col" onclick="createGame()" id="createGame" style="display: none;" type="button" value="CREATE GAME">
+
+    </div>
+    
+    <div id="gameInfo">
+
+    </div>
+
+    <div id="tableGamePlayer1"> </div>
+    
+    <input onclick="colocarShips()" id="colocarShipsButton" style="display: none;" type="button" value="COLOCAR SHIPS EN GRILLA">
+    
+    <div id="shipsToPrint" style="display: none">
+        <h5> barcos a colocar en grilla </h5>
+        <div class="row">
+            <div id="CARRIER" class="col">
+                <span>carrier</span><br>
+                <img onclick="chooseShip(this)" data-type-ship="CARRIER" src="img/carrier.jpg" id="CARRIER">
+            </div>
+            
+            <div id="BATTLESHIP" class="col">
+                <span>battleship</span><br>
+                <img onclick="chooseShip(this)" data-type-ship="BATTLESHIP" src="img/battleship.jpg"  id="BATTLESHIP">
+            </div>
+            
+            <div id="SUBMARINE" class="col">
+                <span>submarine</span><br>
+                <img onclick="chooseShip(this)" data-type-ship="SUBMARINE" src="img/submarine.jpg" id="SUBMARINE">
+            </div>
+            
+            <div id="DESTROYER" class="col">
+                <span>destroyer</span><br>
+                <img onclick="chooseShip(this)" data-type-ship="DESTROYER" src="img/destroyer.jpg" id="DESTROYER">   
+            </div>
+            
+            <div id="PATROLBOAT" class="col">
+                <span>patrolboat</span><br>
+                <img onclick="chooseShip(this)" data-type-ship="PATROLBOAT" src="img/patrolboat.jpg" id="PATROLBOAT">     
+            </div>
+        </div>
+    </div>
+
+    <div id="ownShipsSalvoesReceived" class="container border border-info">
+    </div>
+
+    <div id="tableGamePlayer2"> </div>
+    
+    <div class="row">
+            <h5>mensaje:</h5>
+            <h5 id="mensaje"></h5>
+    </div>
+
+    <div class="row" id="mensajesToGamePlayer">
+
+        <div class="col" id="infoDisparos">
+            <h5> nro de disparos</h5> 
+            <h5> por realizar: </h5>
+            <h5 id="nroDisparosFaltantes"></h5>
+        </div>
+
+        <div class="col" id="infoTurno"> 
+            <h5> nro de turno: </h5> 
+            <h5 id="nroTurno"></h5>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <input onclick="realizarDisparos()" class="col" id="botonDisparar" style="display: none;" type="button" value="DISPARAR">
+
+        <input onclick="salvoesDone()" class="col" id="botonDone" style="display: none;" type="button" value="DONE!">
+
+    </div>
+
+    <div id="salvoesFired" class="container border border-info">
+    </div>
+
+    <script> 
+        var userLoggedIn;
+        var userOpponent;
+        
+        var botonDisparar = document.getElementById("botonDisparar");
+        var botonDone = document.getElementById("botonDone");
+        var logoutButton = document.getElementById("logoutButton");
+        var shipsToPrint = document.getElementById("shipsToPrint");
+        var shipsButton = document.getElementById("colocarShipsButton");
+        var createGameButton = document.getElementById("createGame");
+        var mensaje = document.getElementById("mensaje");
+        var infoDisparos =document.getElementById("infoDisparos"); 
+
+        var typeOfPrint = "";
+        var sePintaraBarco = false;
+        var numberOfPrints = 0;
+        var numberOfShips;
+        var actualShip = {};
+        var shipList = [];
+
+        var locations = [];
+
+        var numberOfShots = 0;
+        var actualSalvo = {};
+        var nroTurno = 0;
+
+    </script>
+
+    <script src="js/game.js"></script>
+    <script src="js/games.js"></script>
+    
+    <script>
+        
+        $(document).ready(function() {
+            
+          $.ajax({
+                    url: "/api/info",
+                    type: 'GET',
+                    contentType: "application/json"
+                })
+                .done(function (data) {
+              
+                    console.log(data);
+                    
+                    if (data.player != null) {
+                        console.log("usuario conectado detectado..");
+
+                        logoutButton.style.display = "block";
+
+                        
+                    }else{
+                        logoutButton.style.display = "none";
+                    }
+
+                })
+                .fail(function () {
+                    console.log("error, no se pudo obtener datos");
+                });
+
+        });
+    
+    
+    </script>
+    
+
+</body>
+
+</html>
+
+<!-- ✖️ -->

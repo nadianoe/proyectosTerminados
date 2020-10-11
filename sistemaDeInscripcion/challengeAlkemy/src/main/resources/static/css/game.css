@@ -1,0 +1,30 @@
+body {
+	height: 100%;
+    text-align: center;
+}
+
+.cuadrito {
+	height: 1cm;
+	width: 1cm;
+}
+
+#gameInfo {
+    position: relative;
+    display: block;
+}
+
+#shipsToPrint {
+    position: relative;
+    display: block;
+}
+
+#shipsAndSalvoes, #salvoesFired{
+    position: relative;
+    display: block;
+    
+}
+
+
+
+
+

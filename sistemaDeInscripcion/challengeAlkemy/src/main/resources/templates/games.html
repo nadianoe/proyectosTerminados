@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Salvo</title>
+    <link href="css/games.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+
+<body class="container">
+    
+    <div class="nav row">
+        
+        <h3 class="col" >salvoooo gameeees</h3>
+         
+        <input class="col" onclick="logout()" id="logoutButton" style="display: none;" type="button" value="LOGOUT">
+        
+        <input class="col" onclick="createGame()" id="createGame" style="display: none;" type="button" value="CREATE GAME">
+     
+    </div>
+
+    <div id="infoGamePlayer" style="display: none;">
+
+    </div>
+
+    <form id="loginForm" class="container">
+
+        <h5>Username: </h5>
+        <input autocomplete="username" id="username">
+
+        <h5>Password: </h5>
+        <input autocomplete="current-password" id="password" type="password">
+
+        <br>
+
+        <button type="button" onclick="login()" value="sing in"></button>
+    </form>
+
+
+    </div>
+
+    <script>
+        var infoGamePlayer = document.getElementById("infoGamePlayer");
+        var loginForm = document.getElementById("loginForm");
+        var logoutButton = document.getElementById("logoutButton");
+        var gamesList = document.getElementById("gamesList");
+        var createGameButton = document.getElementById("createGame");
+    </script>
+    
+    <script>
+        function login() {
+
+            var userPlayer = document.getElementById("username").value;
+            var passPlayer = document.getElementById("password").value;
+
+            location.reload;
+
+            $.ajax({
+                url: "/api/login",
+                type: 'POST',
+                data: {
+                    username: userPlayer,
+                    password: passPlayer
+                }
+            })
+                .done(function () {
+
+                    userPlayer = "";
+                    passPlayer = "";
+
+                    console.log("El usuario ha ingresado!");
+                    console.log("obteniendo datos de juegos ...")
+
+                    $.ajax({
+                        url: "/api/info",
+                        type: 'GET',
+                        data: { tipoDeUsuario : "USER"}
+                    })
+                        .done(function (data) {
+                            console.log(data);
+
+                            if (data.player != null) {
+                                console.log("usuario conectado detectado..");
+                                loginState(data.games, data.player);
+                                console.log("listo");
+                            }
+                        })
+                        .fail(function () {
+                            console.log("error, no se pudo obtener datos");
+                        });
+
+                })
+                .fail(function (qXHR, textStatus, errorThrown) {
+                    alert("error, no se pudo iniciar sesión.");
+                });
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

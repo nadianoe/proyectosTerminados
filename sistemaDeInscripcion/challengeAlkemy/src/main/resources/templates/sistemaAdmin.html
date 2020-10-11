@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+      <meta charset="UTF-8">
+      <title>Sistema</title>
+      <script src="https://code.jquery.com/jquery-3.1.1.js"
+              integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+      </script>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+
+  <body class="container">
+
+  <h3 class="card-title" > Sistema de administración </h3>
+
+  <div id="opciones">
+
+      <button class="btn btn-primary" onclick="logout()" type="button"> LOG OUT </button><br>
+      <button class="btn btn-secondary" onclick="listarMaterias()" type="button"> LISTAR INFO MATERIAS</button><br>
+      <button class="btn btn-secondary" onclick="listarProfesores()" type="button"> LISTAR INFO PROFESORES</button>
+
+  </div>
+
+  <div id="materias" style="display: none;">
+      <button class="btn btn-light" onclick="irAFormMateria()" type="button"> AGREGAR MATERIA </button>
+
+
+  </div>
+
+  <div id="profesores" style="display: none;">
+      <button class="btn btn-light" onclick="irAFormProfesor()" type="button"> AGREGAR PROFESOR </button><br>
+
+
+  </div>
+
+  <div id="formProfesor" style="display: none">
+
+      <form>
+          <div class="row">
+              <div class="col">
+                  <input type="text" id="nombreProfesor" class="form-control" placeholder="Nombre">
+              </div>
+              <div class="col">
+                  <input type="text" id="apellidoProfesor" class="form-control" placeholder="Apellido">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <input type="text" id="dniProfesor" class="form-control" placeholder="dni">
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                      <input class="form-check-input"  type="checkbox" id="esActivo">
+                      <label class="form-check-label" for="esActivo">
+                          Es activo
+                      </label>
+                  </div>
+              </div>
+          </div>
+          <button class="btn btn-info" onclick="agregarProfesor()" type="button"> AGREGAR </button><br>
+      </form>
+
+  </div>
+
+  <div id="formMateria" style="display: none">
+
+      <form>
+          <div class="row">
+              <div class="col">
+                  <input type="text" class="form-control" id="nombreMateria" placeholder="Nombre">
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" id="cupo" placeholder="Cupo máximo">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <input type="text" class="form-control" id="horarioInicio" placeholder="Horario de inicio">
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" id="horarioFinal" placeholder="Horario de finalización">
+              </div>
+          </div>
+
+          <h5> Información del profesor </h5>
+
+              <div class="row">
+                  <div class="col">
+                      <input type="text" id="nombreProfesorMateria" class="form-control" placeholder="Nombre">
+                  </div>
+                  <div class="col">
+                      <input type="text" id="apellidoProfesorMateria" class="form-control" placeholder="Apellido">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <input type="text" id="dniProfesorMateria" class="form-control" placeholder="dni">
+                  </div>
+                  <div class="col">
+                      <div class="form-check">
+                          <input class="form-check-input"  type="checkbox" id="esActivoProfesorMateria">
+                          <label class="form-check-label" for="esActivo">
+                              Es activo
+                          </label>
+                      </div>
+                  </div>
+              </div>
+
+          <button class="btn btn-info" onclick="agregarMateria()" type="button"> AGREGAR </button><br>
+      </form>
+
+
+  </div>
+
+  <script>
+
+      function irAFormProfesor() {
+        $("#formMateria").show();
+      }
+
+      function irAFormMateria() {
+        $("#formProfesor").show();
+      }
+      
+      function listarProfesores() {
+
+          $.ajax({
+              url: "/api/admin/infoProfesores",
+              type: 'GET'
+          })
+              .done(function (data) {
+                  console.log(data);
+                  var profesores = [];
+                  profesores = data.profesores;
+
+                  for (var element in profesores) {
+
+                      var infoMateria = "<div class=\"card\">";
+                      infoMateria += "<div class=\"card-body\">";
+                      var nombreProfesor = element.nombre + " " + element.apellido;
+                      infoMateria += "<h5 class=\"card-title\">" + nombreProfesor + "</h5>";
+                      infoMateria += "<p class=\"card-text\"> DNI: " + element.dni + "</p>";
+                      infoMateria += "<p class=\"card-text\"> Actividad: " + element.esActivo + "</p>";
+                      infoMateria += "</div>";
+                      infoMateria += "<button onclick='modificarInfoProfesor(" + element + ")' ";
+                      infoMateria += "class=\"btn btn-primary\"> MODIFICAR </button>";
+                      infoMateria += "<button onclick='eliminarProfesor(" + element.id + ")' ";
+                      infoMateria += "class=\"btn btn-primary\"> ELIMINAR </button>";
+
+                      infoMateria += "</div>";
+
+                      $("#profesores").append(infoMateria);
+
+                  }
+
+                  $("#profesores").show();
+
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log(qXHR, textStatus, errorThrown);
+                  //window.location.replace("http://localhost:8080/");
+
+              });
+
+
+      }
+
+      function listarMaterias() {
+
+          $.ajax({
+              url: "/api/admin/infoMaterias",
+              type: 'GET'
+          })
+              .done(function (data) {
+                  console.log(data);
+                  console.log(data.materias[0].nombre);
+                  var materias = [];
+                  materias = data.materias;
+
+                  for (var element in materias) {
+                      var infoMateria = "<div class=\"card\">";
+                      infoMateria += "<div class=\"card-body\">";
+                      infoMateria += "<h5 class=\"card-title\">" + element.nombre + "</h5>";
+                      var infoProfesor = element.nombreProfesor + " " + element.apellidoProfesor;
+                      infoMateria += "<p class=\"card-text\"> Profesor: " + infoProfesor + "</p>";
+                      infoMateria += "<p class=\"card-text\"> Inicio: " + element.horarioInicio + "</p>";
+                      infoMateria += "<p class=\"card-text\"> Final: " + element.horarioFinal + "</p>";
+                      infoMateria += "<p class=\"card-text\"> Cupo: " + element.cupo + "</p>";
+                      infoMateria += "</div>";
+                      infoMateria += "<button onclick='modificarInfoMateria(" + element + ")' ";
+                      infoMateria += "class=\"btn btn-primary\"> MODIFICAR </button>";
+                      infoMateria += "<button onclick='eliminarMateria(" + element.id + ")' ";
+                      infoMateria += "class=\"btn btn-primary\"> ELIMINAR </button>";
+
+                      infoMateria += "</div>";
+
+                      $("#materias").append(infoMateria);
+
+                  }
+
+                  $("#materias").show();
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log(qXHR, textStatus, errorThrown);
+                  //window.location.replace("http://localhost:8080/");
+
+              });
+
+      }
+
+      function cambiarInfoProfesor(element) {
+
+          var jsonProfesor = {
+              id: element.profesor.id,
+              nombre: element.profesor.nombre,
+              apellido: element.profesor.apellido,
+              dni: element.profesor.dni,
+              esActivo: element.profesor.esActivo
+          };
+
+          $.ajax({
+              url: "/api/updateProfesor",
+              type: 'POST',
+              data: jsonProfesor
+
+          })
+              .done(function (data) {
+                  console.log(data);
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log("error, no se pudo agregar profesor");
+                  console.log(qXHR, textStatus, errorThrown);
+              });
+
+      }
+
+      function cambiarInfoMateria(element) {
+
+          var jsonProfesor = {
+              id: element.profesor.id,
+              nombre: element.profesor.nombre,
+              apellido: element.profesor.apellido,
+              dni: element.profesor.dni,
+              esActivo: element.profesor.esActivo
+          };
+
+          var jsonMateria = {
+              id : element.id,
+              nombre : element.nombre,
+              horarioInicio : element.horarioInicio,
+              horarioFinal : element.horarioFinal,
+              profesor : jsonProfesor,
+              alumnos : [],
+              cupoMaximo : element.cupo
+          };
+
+          $.ajax({
+              url: "/api/updateMateria",
+              type: 'POST',
+              data: jsonMateria
+
+          })
+              .done(function (data) {
+                  console.log(data);
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log("error, no se pudo agregar materia");
+                  console.log(qXHR, textStatus, errorThrown);
+              });
+        
+      }
+      
+      function borrarProfesor(idProfesor) {
+
+          $.ajax({
+              url: "/api/eliminarProfesor",
+              type: 'DELETE',
+              data: { idProfesor : idProfesor }
+          })
+              .done(function (data) {
+                  console.log(data);
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log("error, no se pudo eliminar profesor");
+                  console.log(qXHR, textStatus, errorThrown);
+              });
+
+      }
+      
+      function agregarProfesor() {
+
+          var nombreProfesor = $("#nombreProfesor").val();
+          var apellidoProfesor = $("#apellidoProfesor").val();
+          var dni = $("#dniProfesor").val();
+          var esActivo = $("#esActivo").val();
+
+          var jsonProfesor = {
+              nombre: nombreProfesor,
+              apellido: apellidoProfesor,
+              dni: dni,
+              esActivo: esActivo
+          };
+
+          $.ajax({
+              url: "/api/agregarProfesor",
+              type: 'PUT',
+              data: jsonProfesor
+
+          })
+              .done(function (data) {
+                  console.log(data);
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log("error, no se pudo agregar profesor");
+                  console.log(qXHR, textStatus, errorThrown);
+              });
+        
+      }
+      
+      function borrarMateria(idMateria) {
+
+          $.ajax({
+              url: "/api/eliminarMateria",
+              type: 'DELETE',
+              data: { idMateria : idMateria }
+
+          })
+              .done(function (data) {
+                  console.log(data);
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log("error, no se pudo eliminar materia");
+                  console.log(qXHR, textStatus, errorThrown);
+              });
+
+
+      }
+      
+      function agregarMateria() {
+
+          var nombreProfesor = $("#nombreProfesorMateria").val();
+          var apellidoProfesor = $("#apellidoProfesorMateria").val();
+          var dni = $("#dniProfesorMateria").val();
+          var esActivo = $("#esActivoProfesorMateria").val();
+
+          var jsonProfesor = {
+              nombre: nombreProfesor,
+              apellido: apellidoProfesor,
+              dni: dni,
+              esActivo: esActivo
+          };
+
+          var nombreMateria = $("#nombreMateria").val();
+          var horarioInicio = $("#horarioInicio").val();
+          var horarioFinal = $("#horarioFinal").val();
+          var cupo = $("#cupo").val();
+
+          var jsonMateria = {
+                id : element.id,
+                nombre : nombreMateria,
+                horarioInicio : horarioInicio,
+                horarioFinal : horarioFinal,
+                profesor : jsonProfesor,
+                alumnos : [],
+                cupoMaximo : cupo
+            };
+
+          $.ajax({
+              url: "/api/agregarMateria",
+              type: 'PUT',
+              data: jsonMateria
+
+          })
+              .done(function (data) {
+                  console.log(data);
+
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log("error, no se pudo agregar materia");
+                  console.log(qXHR, textStatus, errorThrown);
+              });
+
+      }
+
+      function logout() {
+
+          $.ajax({
+              url: "/api/logout",
+              type: 'GET',
+              datatype: 'json'
+          })
+              .done(function () {
+                  var paginaInicio= "http://localhost:8080/";
+                  $(location).prop('href', paginaInicio);
+              })
+              .fail(function (qXHR, textStatus, errorThrown) {
+                  console.log("error, no se pudo cerrar sesión");
+              });
+      }
+
+  </script>
+
+
+  </body>
+
+</html>
