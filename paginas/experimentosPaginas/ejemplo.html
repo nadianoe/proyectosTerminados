@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title> Links importantes </title>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"
+                integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body class="card text-center">
+
+        <input id="nombre" type="text" placeholder="Ingrese nombre">
+        <input id="edad" type="text" placeholder="Ingrese edad">
+        <button id="agregarPagina" type="button" onclick="agregarDatos()" class='btn btn-dark'> agregar datos</button>
+
+        <table id="datosIngresados" class="table table-striped">
+            <tr>
+                <th> Nombre</th>
+                <th> Edad</th>
+            </tr>
+        </table>
+
+        <script>
+
+            function agregarDatos() {
+                var nombreIngresado = document.getElementById("nombre").value;
+                var edadIngresada = document.getElementById("edad").value;
+                var nuevaFila = document.createElement("tr");
+
+                var celdaConNombre = document.createElement("td");
+                celdaConNombre.innerHTML = nombreIngresado;
+                nuevaFila.appendChild(celdaConNombre);
+
+                var celdaConEdad = document.createElement("td");
+                celdaConEdad.innerHTML = edadIngresada;
+                nuevaFila.appendChild(celdaConEdad);
+
+                document.getElementById("nombre").value = "";
+                document.getElementById("edad").value = "";
+                document.getElementById("datosIngresados").appendChild(nuevaFila);
+            }
+
+        </script>
+    </body>
+</html>

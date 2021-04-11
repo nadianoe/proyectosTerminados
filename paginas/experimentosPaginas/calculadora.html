@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculadora</title>
+    <meta charset="utf-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body class="text-center">
+
+<div class="form-group">
+    <label for="primerOperando">Primer operando</label>
+    <input type="number" class="form-control"  id="primerOperando" aria-describedby="emailHelp" placeholder="numero">
+</div>
+<div class="form-group">
+    <label for="segundoOperando">Segundo operando</label>
+    <input type="number" class="form-control" id="segundoOperando" placeholder="numero">
+</div>
+
+<div class="form-group">
+    <button class="btn btn-dark" onclick="realizarSuma()"> SUMAR </button>
+    <button class="btn btn-dark" onclick="realizarResta()"> RESTAR </button>
+    <button class="btn btn-dark" onclick="realizarMultiplicacion()"> MULTIPLICAR </button>
+    <button class="btn btn-dark" onclick="realizarDivision()"> DIVIDIR </button>
+</div>
+
+<h5 id="resultado"></h5>
+<script>
+
+    function realizarSuma(){
+        var valorUno = document.getElementById("primerOperando").value;
+        var valorDos = document.getElementById("segundoOperando").value;
+        var resultado = parseInt(valorUno) + parseInt(valorDos);
+        document.getElementById("resultado").innerHTML = resultado;
+    }
+
+    function realizarResta(){
+        var valorUno = document.getElementById("primerOperando").value;
+        var valorDos = document.getElementById("segundoOperando").value;
+        var resultado = valorUno - valorDos;
+        document.getElementById("resultado").innerHTML = resultado;
+    }
+
+    function realizarMultiplicacion(){
+        var valorUno = document.getElementById("primerOperando").value;
+        var valorDos = document.getElementById("segundoOperando").value;
+        var resultado = valorUno * valorDos;
+        document.getElementById("resultado").innerHTML = resultado;
+    }
+
+    function realizarDivision(){
+        var valorUno = document.getElementById("primerOperando").value;
+        var valorDos = document.getElementById("segundoOperando").value;
+        var resultado = valorUno / valorDos;
+        document.getElementById("resultado").innerHTML = resultado;
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,8 +1,12 @@
 package com.example.demo;
 
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
+import com.mongodb.util.JSON;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -18,7 +22,7 @@ public class AccesoMongoDB {
         this.host = "localhost";
         this.puerto = 27017;
         this.conectarABaseDeDatos("utiles");
-        this.conectarAColeccion("paginas");
+        this.conectarAColeccion("packs");
     }
 
     public void conectarABaseDeDatos(String nombreBaseDeDatos){
@@ -53,22 +57,32 @@ public class AccesoMongoDB {
         return existe;
     }
 
-    public HashMap<String, Object> obtenerPaginas() {
+    public HashMap<String, Object> obtenerPaginas(String pack) {
+        Document filtro = new Document("nombre",pack);
+        FindIterable resultado = coleccion.find(filtro);
+        MongoCursor iterador = resultado.iterator();
+        Document documento = (Document) iterador.next();
+        ArrayList<Pagina> paginasGuardadas = (ArrayList<Pagina>) documento.get("paginas");
+        HashMap<String,Object> infoSolicitada = new HashMap<>();
+        System.out.println(paginasGuardadas);
+        infoSolicitada.put("paginas",paginasGuardadas);
+        return infoSolicitada;
+    }
+
+    public HashMap<String, Object> obtenerNombresDePacks() {
 
         FindIterable resultado = coleccion.find();
         MongoCursor iterador = resultado.iterator();
-        ArrayList<Pagina> paginasGuardadas = new ArrayList<>();
+        ArrayList<String> nombresDePacks = new ArrayList<>();
 
         while (iterador.hasNext()){
             Document documento = (Document) iterador.next();
             String nombre = documento.getString("nombre");
-            String link = documento.getString("link");
-            Pagina paginaEncontrada = new Pagina(nombre,link);
-            paginasGuardadas.add(paginaEncontrada);
+            nombresDePacks.add(nombre);
         }
 
         HashMap<String,Object> infoSolicitada = new HashMap<>();
-        infoSolicitada.put("paginas",paginasGuardadas);
+        infoSolicitada.put("nombresDePacks",nombresDePacks);
         return infoSolicitada;
     }
 
@@ -77,5 +91,21 @@ public class AccesoMongoDB {
         nuevoDocumento.put("nombre",nuevaPagina.getNombre());
         nuevoDocumento.put("link",nuevaPagina.getLink());
         coleccion.insertOne(nuevoDocumento);
+    }
+
+    public void agregarPack(Pack nuevoPack) {
+        Document nuevoDocumento = new Document();
+        nuevoDocumento.put("nombre", nuevoPack.getNombre());
+        nuevoDocumento.put("paginas", nuevoPack.getPaginas());
+        coleccion.insertOne(nuevoDocumento);
+    }
+
+    public void modificarPack(String nombrePack, Pagina pagina) {
+        Bson filtro = Filters.eq("nombre",nombrePack);
+        String nombre = pagina.getNombre();
+        String link = pagina.getLink();
+        String json = "{ $push :{ paginas :{nombre : \" " + nombre + " \"," + "link : \" " + link + " \" } } }";
+        Bson push = (Bson) JSON.parse(json);
+        coleccion.updateOne(filtro,push);
     }
 }

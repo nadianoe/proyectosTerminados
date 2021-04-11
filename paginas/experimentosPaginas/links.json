@@ -1,0 +1,101 @@
+[
+{
+  "_id" : ObjectId("605d6a734a2aa363fede113f"),
+  "nombre" : "undav campus",
+  "link" : "https://ead.undav.edu.ar/"
+},
+{
+  "_id" : ObjectId("605e3a8f4a2aa35505d40dba"),
+  "nombre" : "alc campus",
+  "link" : "https://campus.exactas.uba.ar/course/view.php?id=2320&section=0"
+},
+{
+  "_id" : ObjectId("605e3bdf4a2aa35505d40dbb"),
+  "nombre" : "datoslab campus",
+  "link" : "https://campus.exactas.uba.ar/course/view.php?id=2448"
+},
+{
+  "_id" : ObjectId("605e3cbc4a2aa35505d40dbc"),
+  "nombre" : "algodos",
+  "link" : "https://campus.exactas.uba.ar/course/view.php?id=2420"
+},
+{
+  "_id" : ObjectId("605e3d1d4a2aa35505d40dbd"),
+  "nombre" : "moodle ungs",
+  "link" : "https://sso.ungs.edu.ar/moodle"
+},
+{
+  "_id" : ObjectId("605e3d554a2aa35505d40dbe"),
+  "nombre" : "biology",
+  "link" : "https://www.ubaxxicampusvirtual.uba.ar/course/view.php?id=944"
+},
+{
+  "_id" : ObjectId("605e3d744a2aa35505d40dbf"),
+  "nombre" : "biofisica",
+  "link" : "https://www.ubaxxicampusvirtual.uba.ar/course/view.php?id=950"
+},
+{
+  "_id" : ObjectId("605e3e514a2aa35505d40dc0"),
+  "nombre" : "mateagro",
+  "link" : "https://www.ubaxxicampusvirtual.uba.ar/course/view.php?id=954"
+},
+{
+  "_id" : ObjectId("605e962e4a2aa35505d40dc2"),
+  "nombre" : "TLED cod: 563549",
+  "link" : "https://bbb.ungs.edu.ar/b/sal-4en-m3q"
+},
+{
+  "_id" : ObjectId("605e985d4a2aa35505d40dc3"),
+  "nombre" : "teo im ungs, sala meet 1",
+  "link" : "https://meet.google.com/wbn-zkxq-fd"
+},
+{
+  "_id" : ObjectId("605e986a4a2aa35505d40dc4"),
+  "nombre" : "teo im ungs, sala meet 2",
+  "link" : "https://meet.google.com/fbw-uskz-m"
+},
+{
+  "_id" : ObjectId("605e98814a2aa35505d40dc5"),
+  "nombre" : "prac im ungs, sala meet 1",
+  "link" : "https://meet.google.com/wkk-xzxp-nk"
+},
+{
+  "_id" : ObjectId("605e98964a2aa35505d40dc6"),
+  "nombre" : "prac im ungs, sala meet 2",
+  "link" : "https://meet.google.com/fbw-uskz-m"
+},
+{
+  "_id" : ObjectId("605e99384a2aa35505d40dc7"),
+  "nombre" : "algo2 zzom mañana, pass algo2algo",
+  "link" : " https://exactas-uba.zoom.us/j/88086391481 "
+},
+{
+  "_id" : ObjectId("605e99744a2aa35505d40dc8"),
+  "nombre" : "algo2 zoom noche, pass algo2algo",
+  "link" : "https://exactas-uba.zoom.us/j/82810863224"
+},
+{
+  "_id" : ObjectId("605e9ae94a2aa35505d40dc9"),
+  "nombre" : "unpaz campus",
+  "link" : "https://campusvirtual.unpaz.edu.ar/course/view.php?id=5868"
+},
+{
+  "_id" : ObjectId("605f491d4a2aa313b8b93938"),
+  "nombre" : "tled campus",
+  "link" : "http://virtual.grado.ungs.edu.ar/moodle/course/view.php?id=160"
+},
+{
+  "_id" : ObjectId("605f4e894a2aa313b8b93939"),
+  "nombre" : "intro Im ungs campus",
+  "link" : "http://virtual.grado.ungs.edu.ar/moodle/course/view.php?id=1028"
+},
+{
+  "_id" : ObjectId("605f4eb04a2aa313b8b9393a"),
+  "nombre" : "psec ungs campus",
+  "link" : "http://virtual.grado.ungs.edu.ar/moodle/course/view.php?id=166"
+},
+{
+  "_id" : ObjectId("605f4ece4a2aa313b8b9393b"),
+  "nombre" : "intro IP ungs campus",
+  "link" : "http://virtual.grado.ungs.edu.ar/moodle/course/view.php?id=740"
+}

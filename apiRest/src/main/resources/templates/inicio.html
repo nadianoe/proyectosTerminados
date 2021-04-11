@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title> datos </title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <button id="botonCsv" onclick="mostrarTablaCSV()"> datos de archivo .csv </button>
+    <button id="botonJSon" onclick="mostrarTablaJSON()"> datos de archivo .json </button>
+
+    <table id="informacionSolicitada" class="table table-striped" style="display: none">
+      <tr>
+        <th>Id de departamento</th>
+        <th>Nombre de departamento </th>
+        <th>Id de provincia</th>
+        <th>Nombre de provincia</th>
+        <th>Año</th>
+        <th>Semanas epidemiológicas</th>
+        <th>Nombre de evento</th>
+        <th>Id de grupo por edad</th>
+        <th>Grupo etario</th>
+        <th>Cantidad de casos</th>
+      </tr>
+
+    </table>
+
+    <script>
+
+      function mostrarTablaCSV(){
+
+        $("#botonCsv").hide();
+        $("#botonJSon").hide();
+
+        $.ajax({
+          url: "http://localhost:8080/api/datos/csv",
+          type: 'GET'
+        })
+                .done(function (data) {
+
+                  console.log(data);
+
+                  let datos = data.casos;
+                  let contenido = "";
+                  for (var i = 0; i < datos.length; i++){
+                    contenido = "<tr>\n";
+                    contenido += "<td>" + datos[i].idDepartamento + "</td>";
+                    contenido += "<td>" + datos[i].nombreDepartamento + "</td>";
+                    contenido += "<td>" + datos[i].idProvincia + "</td>";
+                    contenido += "<td>" + datos[i].nombreProvincia + "</td>";
+                    contenido += "<td>" + datos[i].anio + "</td>";
+                    contenido += "<td>" + datos[i].semanas + "</td>";
+                    contenido += "<td>" + datos[i].evento + "</td>";
+                    contenido += "<td>" + datos[i].idGrupoEdad + "</td>";
+                    contenido += "<td>" + datos[i].grupoEtario + "</td>";
+                    contenido += "<td>" + datos[i].cantidadDeCasos + "</td>";
+
+                    $("#informacionSolicitada").append(contenido);
+                  }
+
+                  $("#informacionSolicitada").show();
+
+
+                })
+                .fail(function () {
+                  console.log("error, no se pudo obtener datos");
+                });
+      }
+
+      function mostrarTablaJSON() {
+
+        $("#botonCsv").hide();
+        $("#botonJSon").hide();
+
+        $.ajax({
+          url: "http://localhost:8080/api/datos/json",
+          type: 'GET'
+        })
+                .done(function (data) {
+
+                  let datos = data.casos;
+                  let contenido = "";
+                  for (var i = 0; i < datos.length; i++){
+                    contenido = "<tr>\n";
+                    contenido += "<td>" + datos[i].departamento_id + "</td>";
+                    contenido += "<td>" + datos[i].departamento_nombre + "</td>";
+                    contenido += "<td>" + datos[i].provincia_id + "</td>";
+                    contenido += "<td>" + datos[i].provincia_nombre + "</td>";
+                    contenido += "<td>" + datos[i].anio + "</td>";
+                    contenido += "<td>" + datos[i].semanas_epidemiologicas + "</td>";
+                    contenido += "<td>" + datos[i].evento_nombre + "</td>";
+                    contenido += "<td>" + datos[i].grupo_edad_id + "</td>";
+                    contenido += "<td>" + datos[i].grupo_edad_desc + "</td>";
+                    contenido += "<td>" + datos[i].cantidad_casos + "</td>";
+
+                    $("#informacionSolicitada").append(contenido);
+                  }
+
+                  $("#informacionSolicitada").show();
+
+                })
+                .fail(function () {
+                  console.log("error, no se pudo obtener datos");
+                });
+      }
+
+    </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="text/html" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title> Principal </title>
+        <script type="text/javascript" src="funciones.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body class="card text-center">
+
+    <img class="img-fluid" src="mafaldita.png" alt="mafaldita">
+    <span class="text-center"> [Aquí tendremos las páginas que necesitamos a mano!... pues favoritos no sirve  (? ]</span>
+    <button id="volverAlInicio" type="button" onclick="goHome()" class='btn btn-dark'> VOLVER AL INICIO </button>
+    <button id="agregarPack" type="button" onclick="mostrarFormNuevoPack()" class='btn btn-dark'> AGREGAR PACK </button>
+    <button id="agregarPagina" type="button" onclick="mostrarFormNuevaPagina()" class='btn btn-dark'> AGREGAR PÁGINA </button>
+
+    <div id="formNuevoPack" >
+        <div class="form-row">
+            <div class="col">
+                <input id="nombreDePack" type="text" class="form-control" placeholder="Ingrese nombre">
+            </div>
+            <button class='col btn btn-dark' onclick="agregarPackDePaginas()"> listo! </button>
+        </div>
+    </div>
+    <div id="formNuevaPagina" >
+        <div class="form-row">
+            <div class="col">
+                <input id="nombreDePagina" type="text" class="form-control" placeholder="Ingrese nombre">
+            </div>
+            <div class="col">
+                <input id="link" type="text" class="form-control" placeholder="Ingrese link">
+            </div>
+            <button class='col btn btn-dark' onclick="agregarPagina()"> listo! </button>
+        </div>
+    </div>
+
+    <table id="packsRegistrados" class="table table-striped">
+        <tr>
+            <th> Nombre </th>
+            <th> Página </th>
+        </tr>
+    </table>
+    <table id="paginasRegistradas" class="table table-striped" >
+        <tr>
+            <th> Nombre </th>
+            <th> ver links?  </th>
+        </tr>
+    </table>
+
+    <script>
+        obtenerPacks();
+    </script>
+
+    </body>
+</html>

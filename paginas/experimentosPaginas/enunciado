@@ -1,0 +1,11 @@
+El día de hoy deberán crear una pequeña calculadora que realice
+las siguientes operaciones: suma, resta, multiplicación y división.
+
+Se debrán utilizar los siguientes símbolos, respectivamente: +, -, * y /
+
+La misma deberá recibir dos números y luego deberá mostrar el resultado
+obtenido.
+
+Recordar que los inputs deberán tener como atributo type="number".
+
+

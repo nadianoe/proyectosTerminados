@@ -19,19 +19,37 @@ public class Controller {
         this.accesoABaseDeDatos = new AccesoMongoDB();
     }
 
-    @RequestMapping(value = "/datos/paginas", method = RequestMethod.GET)
-    public ResponseEntity<Object> obtenerPaginas() {
-        HashMap<String, Object> datos = accesoABaseDeDatos.obtenerPaginas();
+    @RequestMapping(value = "/datos/{pack}/paginas", method = RequestMethod.GET)
+    public ResponseEntity<Object> obtenerPaginas(@PathVariable String pack) {
+        HashMap<String, Object> datos = accesoABaseDeDatos.obtenerPaginas(pack);
         return new ResponseEntity<>(datos, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/datos/paginas", method = RequestMethod.PUT)
-    public ResponseEntity<Object> agregarPagina(@RequestBody HashMap pagina) {
+    @RequestMapping(value = "/datos/packs", method = RequestMethod.GET)
+    public ResponseEntity<Object> obtenerNombresDePacks() {
+        HashMap<String, Object> datos = accesoABaseDeDatos.obtenerNombresDePacks();
+        return new ResponseEntity<>(datos, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/datos/packs", method = RequestMethod.PUT)
+    public ResponseEntity<Object> agregarNuevoPack(@RequestBody HashMap pack) {
+        String nombre = (String) pack.get("nombre");
+        Pack nuevoPack = new Pack(nombre);
+        accesoABaseDeDatos.agregarPack(nuevoPack);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/datos/{nombreDePack}/paginas", method = RequestMethod.PUT)
+    public ResponseEntity<Object> agregarPagina(@PathVariable String nombreDePack, @RequestBody HashMap pagina) {
         String nombre = (String) pagina.get("nombre");
         String link = (String) pagina.get("link");
         Pagina nuevaPagina = new Pagina(nombre, link);
-        accesoABaseDeDatos.agregarPagina(nuevaPagina);
+        accesoABaseDeDatos.modificarPack(nombreDePack,nuevaPagina);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+
+
 
 }

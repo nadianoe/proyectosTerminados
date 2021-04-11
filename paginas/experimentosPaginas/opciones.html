@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>wetransfer</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="../css/inicio.css" rel="stylesheet" type="text/css">
+
+    </head>
+    <body>
+
+        <button onclick="mostrarDatosCSV()"> Tabla con datos del archivo .csv </button>
+
+        <br>
+
+        <button onclick="mostrarDatosJson()"> Tabla con datos del archivo .json </button>
+
+        <table id="datos">
+
+        </table>
+
+    <script>
+
+
+            function mostrarDatosCSV(){
+
+                $.ajax({
+                        url: "http://localhost:8080/api/datos/csv",
+                        type: 'GET'
+                    })
+                    .done(function (data) {
+
+                        console.log(data);
+
+                    })
+                    .fail(function () {
+                        console.log("error, no se pudo obtener datos");
+                    });
+
+            }
+
+            function mostrarDatosJson(){
+
+                $.ajax({
+                        url: "http://localhost:8080/api/datos/json",
+                        type: 'GET'
+                    })
+                    .done(function (data) {
+
+                        console.log(data);
+
+                    })
+                    .fail(function () {
+                        console.log("error, no se pudo obtener datos");
+                    });
+
+            }
+
+        </script>
+    </body>
+</html>
