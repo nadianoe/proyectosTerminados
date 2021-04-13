@@ -64,7 +64,6 @@ public class AccesoMongoDB {
         Document documento = (Document) iterador.next();
         ArrayList<Pagina> paginasGuardadas = (ArrayList<Pagina>) documento.get("paginas");
         HashMap<String,Object> infoSolicitada = new HashMap<>();
-        System.out.println(paginasGuardadas);
         infoSolicitada.put("paginas",paginasGuardadas);
         return infoSolicitada;
     }
@@ -104,7 +103,7 @@ public class AccesoMongoDB {
         Bson filtro = Filters.eq("nombre",nombrePack);
         String nombre = pagina.getNombre();
         String link = pagina.getLink();
-        String json = "{ $push :{ paginas :{nombre : \" " + nombre + " \"," + "link : \" " + link + " \" } } }";
+        String json = "{ $push :{ paginas : {nombre : \"" + nombre + "\"," + "link : \"" + link + "\" } } }";
         Bson push = (Bson) JSON.parse(json);
         coleccion.updateOne(filtro,push);
     }
