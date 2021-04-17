@@ -66,7 +66,7 @@ function obtenerPaginas(nombrePack){
                 var nuevaFila = "<tr>\n";
                 nuevaFila += "<td>" + nombreIngresado + "</td>";
                 nuevaFila += "<td>";
-                nuevaFila += "<a class='btn btn-dark' href='" + linkIngresado + "'> ir </a>";
+                nuevaFila += "<a class='btn btn-dark' href='" + linkIngresado + "' target='_blank'> ir </a>";
                 nuevaFila += "</td>\n";
                 nuevaFila += "</tr>";
                 $("#paginasRegistradas").append(nuevaFila);

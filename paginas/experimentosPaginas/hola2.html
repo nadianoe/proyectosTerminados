@@ -1,10 +1,65 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Title</title>
+    <meta charset="utf-8">
+    <meta content="text/html" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>wetransfer</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
+
+<img id="rob" src="robot1.png" alt="pequeño robot" onclick="a()">
+<input id="text" src="robot1.png"  onkeypress="b()">
+<input type="text" onkeydown="myFunction(event)">
+<script>
+function a(){
+    var e = document.getElementById("rob");
+    e.style.position = "absolute";
+    e.style.top = "10cm";
+}
+
+function b(){
+    var e = document.getElementById("text");
+    e.style.position = "absolute";
+    e.style.top = "10cm";
+}
+
+function myFunction(event) {
+    var x = event.keyCode;
+    if (x == 27) {  // 27 is the ESC key
+        alert("You pressed the Escape key!");
+    }
+}
+
+function control(event){
+    var cod = event.keyCode;
+    switch (cod) {
+        case 37:
+            alert('left');
+            break;
+        case 38:
+            alert('up');
+            break;
+        case 39:
+            alert('right');
+            break;
+        case 40:
+            alert('down');
+            break;
+    }
+}
+
+
+
+
+</script>
 
 </body>
 </html>

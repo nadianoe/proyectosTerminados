@@ -17,4 +17,9 @@ public class PaginitasahreApplication {
     public String index() {
         return "principal";
     }
+
+    @RequestMapping("/home")
+    public String home() {
+        return "principal.html";
+    }
 }

@@ -2,13 +2,16 @@ var nombreDePackActual = "ninguno";
 
 function goHome() {
     $("#volverAlInicio").hide();
+    $("#formNuevaPagina").hide();
     $("#agregarPack").show();
     $("#packsRegistrados").show();
     $("#agregarPagina").hide();
     $("#paginasRegistradas").hide();
+    $("#paginasRegistradas").children().remove();
 }
 
 function obtenerPacks(){
+
     $.ajax({
         url: "http://localhost:8080/api/datos/packs",
         type: 'GET'
@@ -43,6 +46,7 @@ function obtenerPacks(){
 function verPack(nombreDePack) {
     $("#volverAlInicio").show();
     $("#agregarPack").hide();
+    $("#formNuevoPack").hide();
     $("#packsRegistrados").hide();
     $("#agregarPagina").show();
     obtenerPaginas(nombreDePack);
@@ -57,16 +61,13 @@ function obtenerPaginas(nombrePack){
     })
         .done(function (data) {
             var paginas = data.paginas;
-
-console.log("se pudoooo! " + paginas.length);
-
             for (var i = 0; i < paginas.length; i++) {
                 var nombreIngresado = paginas[i].nombre;
                 var linkIngresado = paginas[i].link;
                 var nuevaFila = "<tr>\n";
                 nuevaFila += "<td>" + nombreIngresado + "</td>";
                 nuevaFila += "<td>";
-                nuevaFila += "<button class='btn btn-dark' href='" + linkIngresado + "'> ir </a>";
+                nuevaFila += "<a class='btn btn-dark' href='" + linkIngresado + "' target='_blank'> ir </a>";
                 nuevaFila += "</td>\n";
                 nuevaFila += "</tr>";
                 $("#paginasRegistradas").append(nuevaFila);
@@ -142,8 +143,7 @@ function agregarPackDePaginas(){
             nuevaFila += "<button role='button' class='btn btn-dark' onclick=" + nombreFuncion+ "> ver </button>";
             nuevaFila += "</td>\n";
             nuevaFila += "</tr>";
-            $("#link").val("");
-            $("#nombreDePagina").val("");
+            $("#nombreDePack").val("");
             $("#packsRegistrados").append(nuevaFila);
 
         })
@@ -155,4 +155,4 @@ function agregarPackDePaginas(){
         });
 }
 
-//cambiar obtenerPaginas.html a carpetaproyTerminados
+//cambiar paginas.html a carpetaproyTerminados
